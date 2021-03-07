@@ -88,7 +88,7 @@ def parse_directory():
         assert country_name not in countries, f'Country {country_name!r} is already in countries! countries[{country_name!r}] == {countries.get(country_name)!r}'
         countries[country_name] = {
             'name': country_name,
-            'abbreviation': country_abbreviation.upper(),
+            'abbreviation': country_abbreviation.upper().replace('CHINA', 'CN'),
             'url': url,
             'domain': domain,
             'filename': filename

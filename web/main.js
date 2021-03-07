@@ -97,6 +97,83 @@ function _test_required_el(country) {
 }
 
 
+function createMap(data) {
+    var cat_agg = [[], [], [], [], [], []];
+    for (var country of data['countries']) {
+        cat_agg[country['classification']].push({
+            code: country['abbreviation']
+        })
+    }
+
+    console.log(cat_agg)
+
+    var series = [
+        {
+            name: 'Unknown',
+            data: cat_agg[0],
+            color: '#9EA7AD'
+        },
+        {
+            name: 'Read More',
+            data: cat_agg[1],
+            color: '#2DCCFF'
+        },
+        {
+            name: 'Not Open',
+            data: cat_agg[2],
+            color: '#FF3838'
+        },
+        {
+            name: 'Very Hard to Enter',
+            data: cat_agg[3],
+            color: '#FFB302'
+        },
+        {
+            name: 'Hard to Enter',
+            data: cat_agg[4],
+            color: '#FCE83A'
+        },
+        {
+            name: 'Open',
+            data: cat_agg[5],
+            color: '#56F000'
+        }
+    ];
+
+    Highcharts.mapChart('map-container', {
+        chart: {
+            map: 'custom/world',
+            spacingBottom: 20,
+            backgroundColor: '#f5f5f5'
+        },
+
+        legend: {
+            enabled: false
+        },
+
+        title: {
+            text: ''
+        },
+
+        plotOptions: {
+            map: {
+                allAreas: false,
+                joinBy: ['iso-a2', 'code'],
+                dataLabels: {
+                    enabled: false
+                },
+                tooltip: {
+                    headerFormat: '',
+                    pointFormat: '{point.name}: <b>{series.name}</b>'
+                }
+            }
+        },
+
+        series: series,
+    });
+}
+
+
 $(document).ready(function() {
     fetch('/data.json').then(response => response.json()).then(data => {
         console.debug('Received data:', data)
@@ -141,6 +218,8 @@ $(document).ready(function() {
                 width: '12%'
             }]
         })
+
+        createMap(data)
     }).catch((error) => {
         console.error('Error:', error)
         alert(`Failed to fetch data: ${error}`)

@@ -18,10 +18,11 @@
                     <ul>
                         <li>Open to Travel</li>
                         <ul>
-                            <li><b>Open:</b> The country allows United States travellers to fly in, regardless of purpose (e.g. tourism)</li>
+                            <li><b>Open:</b> The country allows United States travelers to fly in, regardless of purpose (e.g. tourism)</li>
                             <li><b>Hard to Enter:</b> The country only allows United States citizens to enter for specific purposes (e.g. returning to home, international school, etc)</li>
                             <li><b>Very Hard to Enter:</b> Only specific people are granted access to the country (e.g. diplomats, corporate leaders)</li>
                             <li><b>Closed:</b> No entry to the country is permitted by the country's government</li>
+                            <li><b>More Info:</b> Only portions of the country appear to be open. Check the URL for more info</li>
                         </ul>
                         <li>COVID Test</li>
                         <ul>
@@ -32,7 +33,10 @@
                     <p><b>Last Update:</b> <span id="last-update"></span></p>
                 </div>
             </div>
-            <div class="row">
+            <div class="row pb-3">
+                <div id="map-container" class="col-12"></div>
+            </div>
+            <div class="row pb-3">
                 <div class="col-12">
                     <table id="countries" class="display" style="width: 100%;">
                         <thead>
@@ -54,6 +58,13 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/plug-ins/1.10.22/features/pageResize/dataTables.pageResize.min.js" crossorigin="anonymous"></script>
+
+        <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+        <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+        <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+        <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+
         <script src="main.js"></script>
     </body>
 </html>
