@@ -216,8 +216,36 @@ def _parse_covid_test_answer(_answer):
         if d in answer:
             return TEST_REQUIRED_UNKNOWN
 
-    logger.warning('Unknown response: _answer=%r, answer=%r' % (_answer, answer))
+    logger.warning('Unknown response for test_required: _answer=%r, answer=%r' % (_answer, answer))
     return TEST_REQUIRED_UNKNOWN
+
+
+QUARANTINE_REQUIRED_UNKNOWN, QUARANTINE_REQUIRED_YES, QUARANTINE_REQUIRED_NO = range(3)
+
+def _parse_quarantine_required_answer(_answer):
+    answer = re.sub(r'\s+', ' ', re.sub(r'[^\w ]', '', strip_tags(_answer))).strip().lower()
+    
+    if not answer:
+        return QUARANTINE_REQUIRED_UNKNOWN
+
+    yess = ['yes', 'subject to quarantine', 'the following restrictions apply']
+    nos = ['no', 'not required to quarantine']
+    unknowns = ['possibly']
+
+    for d in yess:
+        if d in answer:
+            return QUARANTINE_REQUIRED_YES
+
+    for d in nos:
+        if d in answer:
+            return QUARANTINE_REQUIRED_NO
+
+    for d in unknowns:
+        if d in answer:
+            return QUARANTINE_REQUIRED_UNKNOWN
+
+    logger.warning('Unknown response for quarantine_required: _answer=%r, answer=%r' % (_answer, answer))
+    return QUARANTINE_REQUIRED_UNKNOWN
 
 
 def parse_country(country):
@@ -280,6 +308,22 @@ def parse_country(country):
         country['test_required'] = TEST_REQUIRED_NO
     else:
         country['test_required'] = TEST_REQUIRED_UNKNOWN
+
+    # parse the "quarantine required" column
+
+    rstring_quarantine_required = r'(citizens required to quarantine\??)(.*$.*$)'
+    matches = re.findall(rstring_quarantine_required, contents, re.IGNORECASE | re.MULTILINE)
+    answers = set()
+
+    for question, answer in matches:
+        answers.add(_parse_quarantine_required_answer(answer))
+
+    if QUARANTINE_REQUIRED_YES in answers:
+        country['quarantine_required'] = QUARANTINE_REQUIRED_YES
+    elif QUARANTINE_REQUIRED_NO in answers:
+        country['quarantine_required'] = QUARANTINE_REQUIRED_NO
+    else:
+        country['quarantine_required'] = QUARANTINE_REQUIRED_UNKNOWN
 
     return country
 

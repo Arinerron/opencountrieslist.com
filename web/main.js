@@ -80,8 +80,8 @@ function _test_required_el(country) {
 
     var texts = {
         0: 'UNKNOWN',
-        1: 'YES',
-        2: 'NO'
+        1: 'REQUIRED',
+        2: 'NOT REQUIRED'
     }
     texts[-1] = ''
 
@@ -97,6 +97,39 @@ function _test_required_el(country) {
 }
 
 
+function _quarantine_required_el(country) {
+    var quarantine_required = country['quarantine_required']
+
+    // set to N/A if they don't allow entry (covid tests are meaningless)
+    if (country['classification'] === 2) {
+        quarantine_required = -1
+    }
+
+    var classNames = {
+        0: 'status-unknown',
+        1: 'status-no', // quarantine_required == yes, but we want color
+        2: 'status-yes' // quarantine_required == no
+    }
+
+    var texts = {
+        0: 'UNKNOWN',
+        1: 'REQUIRED',
+        2: 'NOT REQUIRED'
+    }
+    texts[-1] = ''
+
+    const td = document.createElement('td')
+    if (classNames[quarantine_required]) {
+        td.className = classNames[quarantine_required]
+    }
+    td.setAttribute('data-order', ''+quarantine_required)
+    const span = document.createElement('span')
+    span.innerText = texts[quarantine_required]
+    td.append(span)
+    return td
+}
+
+
 function createMap(data) {
     var cat_agg = [[], [], [], [], [], []];
     for (var country of data['countries']) {
@@ -104,8 +137,6 @@ function createMap(data) {
             code: country['abbreviation']
         })
     }
-
-    console.log(cat_agg)
 
     var series = [
         {
@@ -191,6 +222,7 @@ $(document).ready(function() {
                 _text_el(abbrevs[country['abbreviation']] || country['abbreviation']),
                 _text_el(country['name']),
                 _classification_el(country),
+                _quarantine_required_el(country),
                 _test_required_el(country),
                 _url_el(country['url'])
             ]
@@ -200,7 +232,7 @@ $(document).ready(function() {
         }
 
         $('#countries').DataTable({
-            order: [[ 2, 'desc' ], [ 3, 'desc' ], [ 4, 'asc' ]],
+            order: [[ 2, 'desc' ], [ 3, 'desc' ], [ 4, 'desc' ], [ 5, 'asc' ]],
             stateSave: true,
             paging: false,
             columnDefs: [{
@@ -215,6 +247,9 @@ $(document).ready(function() {
                 width: '18%'
             }, {
                 targets: 3,
+                width: '12%'
+            }, {
+                targets: 4,
                 width: '12%'
             }]
         })

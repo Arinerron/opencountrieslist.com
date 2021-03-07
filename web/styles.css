@@ -111,9 +111,14 @@ body {
     background-color: #BCFF66 !important;
 }
 
-tr > td:nth-of-type(5) {
+tr > td:nth-of-type(6) {
     max-width: 100px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+/* TODO: remove this */
+.highcharts-credits {
+    display: none;
 }
