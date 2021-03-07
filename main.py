@@ -140,6 +140,9 @@ def _preformat_answer(answer):
 def _parse_answer(_answer):
     answer = re.sub(r'\s+', ' ', re.sub(r'[^\w ]', '', strip_tags(_answer))).strip().lower()
 
+    if not answer:
+        return ANSWER_UNKNOWN
+
     yes_sometimess = ['not for tourism', 'entry is restricted', 'no tourism', 'subject to strict limitations', 'purpose of travel', 'only under', 'very limited cases', 'special permission', 'but only if they meet other certain criteria', 'limited circumstances']
     yes_always = ['valid visa', 'approved evisa', 'with additional documentation', 'subject to restrictions']
 
@@ -184,17 +187,45 @@ def _parse_answer(_answer):
     for d in others_always:
         if d in answer:
             return ANSWER_YES
-    if answer == '':
-        return ANSWER_UNKNOWN
 
     logger.warning('Unknown response: _answer=%r, answer=%r' % (_answer, answer))
     return ANSWER_UNKNOWN
+
+
+TEST_REQUIRED_UNKNOWN, TEST_REQUIRED_YES, TEST_REQUIRED_NO = range(3)
+
+def _parse_covid_test_answer(_answer):
+    answer = re.sub(r'\s+', ' ', re.sub(r'[^\w ]', '', strip_tags(_answer))).strip().lower()
+    
+    if not answer:
+        return TEST_REQUIRED_UNKNOWN
+
+    yess = ['yes', 'must produce a negative', 'provide a negative', 'requires a negative', 'must undergo', 'requirements for a valid test', 'is required']
+    nos = ['no', 'not required']
+    unknowns = ['remain closed']
+
+    for d in yess:
+        if d in answer:
+            return TEST_REQUIRED_YES
+
+    for d in nos:
+        if d in answer:
+            return TEST_REQUIRED_NO
+
+    for d in unknowns:
+        if d in answer:
+            return TEST_REQUIRED_UNKNOWN
+
+    logger.warning('Unknown response: _answer=%r, answer=%r' % (_answer, answer))
+    return TEST_REQUIRED_UNKNOWN
 
 
 def parse_country(country):
     with open(country['filename'], 'r') as f:
         contents = f.read()
     
+    # parse the "open" question
+
     rstring_us_citizens = r'((Are )?U\.S\. citizens permitted to enter\??)(.*$.*$)'
     matches = re.findall(rstring_us_citizens, contents, re.IGNORECASE | re.MULTILINE)
     if not matches:
@@ -203,6 +234,9 @@ def parse_country(country):
             # print(url2)
             # TODO: parse additional info URLs
             pass
+
+        country['classification'] = ANSWER_UNKNOWN
+        country['preformatted'] = []
     else:
         statuses = set()
         preformatted = set()
@@ -231,6 +265,22 @@ def parse_country(country):
         country['classification'] = statuses
         country['preformatted'] = list(preformatted)
 
+    # parse the "test required" question
+
+    rstring_covid_test = r'(negative COVID.*?required for entry\??)(.*$.*$)'
+    matches = re.findall(rstring_covid_test, contents, re.IGNORECASE | re.MULTILINE)
+    answers = set()
+    
+    for question, answer in matches:
+        answers.add(_parse_covid_test_answer(answer))
+
+    if TEST_REQUIRED_YES in answers:
+        country['test_required'] = TEST_REQUIRED_YES
+    elif TEST_REQUIRED_NO in answers:
+        country['test_required'] = TEST_REQUIRED_NO
+    else:
+        country['test_required'] = TEST_REQUIRED_UNKNOWN
+
     return country
 
 
@@ -240,10 +290,13 @@ def get_statuses():
         parse_country(country)
         del country['filename']
         del country['domain']
-    return directory
+    return list(directory.values())
 
 
 if __name__ == '__main__':
-    OUTPUT_FILENAME = 'data.json'
+    OUTPUT_FILENAME = 'web/data.json'
     with open(OUTPUT_FILENAME, 'w') as f:
-        f.write(json.dumps(get_statuses(), indent=2))
+        f.write(json.dumps({
+            'time': int(time.time()),
+            'countries': get_statuses()
+        }, indent=2))
