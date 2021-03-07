@@ -1,0 +1,4 @@
+data/*
+data.json
+countryscrape.log
+__pycache__
