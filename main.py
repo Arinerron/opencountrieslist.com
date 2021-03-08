@@ -103,7 +103,7 @@ def strip_tags(html):
     return s.get_data()
 
 
-def has_file_expired(filename, expire_after=60*60*24):
+def has_file_expired(filename, expire_after=60*60*5):
     try:
         p = pathlib.Path(filename)
         if not p:
