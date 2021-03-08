@@ -13,6 +13,7 @@ import io
 import json
 import hashlib
 import datetime
+import sqlite3
 
 logger = logging.getLogger('')
 logger.setLevel(logging.DEBUG)
@@ -23,6 +24,63 @@ fh.setFormatter(formatter)
 sh.setFormatter(colorlog.ColoredFormatter('%(log_color)s[%(asctime)s] %(levelname)s [%(filename)s.%(funcName)s:%(lineno)d] %(message)s', datefmt='%a, %d %b %Y %H:%M:%S'))
 logger.addHandler(fh)
 logger.addHandler(sh)
+
+
+conns = dict()
+
+_REG_DB = 'history.db'
+CURRENT_DB = _REG_DB
+
+# get a cursor
+def database(use_file: str=None, read_only: bool=False):
+    global conns, CURRENT_DB
+    _old_current_db = CURRENT_DB
+    if use_file == None:
+        use_file = CURRENT_DB
+    else:
+        CURRENT_DB = use_file
+
+    args = {}
+    if read_only:
+        args['uri'] = True
+
+    # create the database if not exist
+    if not conns.get(use_file):
+        conns[use_file] = sqlite3.connect(use_file, detect_types=sqlite3.PARSE_DECLTYPES, **args)
+        if not read_only:
+            # none of this would be able to run if it was readonly anyway
+            _init_database(conns[use_file])
+
+    CURRENT_DB = _old_current_db
+    return conns[use_file].cursor()
+
+
+def commit() -> None:
+    global conns
+    return conns[CURRENT_DB].commit()
+
+
+def _init_database(conn) -> None:
+    c = conn.cursor()
+    c.execute(
+        'CREATE TABLE IF NOT EXISTS `countries` ('
+            '`id` INT AUTO_INCREMENT,'
+            '`unixts` INT NOT NULL,'
+            '`abbreviation` VARCHAR(10) NOT NULL,'
+            '`name` VARCHAR(400) NOT NULL,'
+            '`url` VARCHAR(1000) NOT NULL,'
+            '`classification` INT NOT NULL,'
+            '`preformatted` VARCHAR(20000),'
+            '`test_required` INT NOT NULL,'
+            '`quarantine_required` INT NOT NULL,'
+            '`last_changed` INT,'
+            #'KEY `id` (`id`) USING BTREE,'
+            'PRIMARY KEY (`id`)'
+        ');'
+    )
+    
+    commit()
+    c.close()
 
 
 class MLStripper(html.parser.HTMLParser):
@@ -378,6 +436,7 @@ def parse_country_contents(country, contents, ignore_urls=None, temp_url=None):
     else:
         country['quarantine_required'] = QUARANTINE_REQUIRED_UNKNOWN
 
+
     return retval
 
 
@@ -390,6 +449,67 @@ def get_statuses():
         parse_country_contents(country, contents)
         del country['filename']
         del country['domain']
+
+    # add stuff to db
+    for _, country in directory.items():
+        c = database()
+
+        c.execute(
+            r"SELECT * FROM ("
+                r"SELECT 'change', `unixts`, `classification`, `test_required`, `quarantine_required`"
+                r" FROM `countries`"
+                r" WHERE `name`=? AND (`classification`!=? OR `test_required`!=? OR `quarantine_required`!=?)"
+                r" ORDER BY `unixts` DESC"
+                r" LIMIT 1"
+            r") UNION ALL SELECT * FROM ("
+                r"SELECT 'recent', `unixts`, `classification`, `test_required`, `quarantine_required`"
+                r" FROM `countries`"
+                r" WHERE `name`=?"
+                r" ORDER BY `unixts` DESC"
+                r" LIMIT 1"
+            r")", (country['name'], country['classification'], country['test_required'], country['quarantine_required'], country['name']))
+
+        change_row = None
+        recent_row = None
+        for i in range(2):
+            row = c.fetchone()
+            if row:
+                # we found the most recent change in status.
+                row_type, unixts, old_classification, old_test_required, old_quarantine_required = row
+                if row_type == 'change':
+                    change_row = row
+                elif row_type == 'recent':
+                    recent_row = row
+
+        if (change_row and recent_row) and (change_row[2] == recent_row[2] and change_row[3] == recent_row[3] and change_row[4] == recent_row[4]):
+            print(change_row)
+            print(recent_row)
+            # a country just changed status!
+            row_type, unixts, old_classification, old_test_required, old_quarantine_required = change_row
+            logger.info('Change in status for country %r:\n* classification: %r -> %r\n* test_required: %r -> %r\n* quarantine_required: %r -> %r\n* unixts: %r -> %r' % (country['name'], old_classification, country['classification'], old_test_required, country['test_required'], old_quarantine_required, country['quarantine_required'], unixts, int(time.time())))
+            # TODO: make notification?
+
+        if change_row:
+            row_type, unixts, old_classification, old_test_required, old_quarantine_required = change_row
+            country['last_updated'] = unixts
+            country['old_data'] = {
+                'classification': old_classification,
+                'test_required': old_test_required,
+                'quarantine_required': old_quarantine_required
+            }
+        
+        c.execute("INSERT INTO `countries` (`unixts`, `abbreviation`, `name`, `url`, `classification`, `preformatted`, `test_required`, `quarantine_required`, `last_changed`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)", (
+            int(time.time()),
+            country['abbreviation'],
+            country['name'],
+            country['url'],
+            country['classification'],
+            '\n'.join(country['preformatted']),
+            country['test_required'],
+            country['quarantine_required'], # don't trust this btw
+            country['last_changed']))
+    commit()
+
     return list(directory.values())
 
 

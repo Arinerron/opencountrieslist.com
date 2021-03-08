@@ -244,7 +244,8 @@ $(document).ready(function() {
             columnDefs: [{
                 targets: 0,
                 className: 'text-center',
-                width: '5%'
+                width: '5%',
+                orderable: false
             }, {
                 targets: 1,
                 width: '25%'
@@ -259,7 +260,7 @@ $(document).ready(function() {
                 width: '12%'
             }, {
                 targets: 5,
-                width: '12%'
+                width: '11%'
             }]
         })
 
