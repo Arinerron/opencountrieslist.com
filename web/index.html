@@ -2,52 +2,68 @@
 <html lang="en">
     <head>
         <title>List of Open Countries</title>
+        <meta name="description" content="See a list and map of countries you can travel to from the United States">
+        <meta name="keywords" content="open countries,which countries are open,travel,list of open countries,map of open countries,quarantine,coronavirus,COVID-19,United States">
+        <link rel="canonical" href="https://opencountrieslist.com/">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Facebook -->
+        <meta property="og:url" content="https://opencountrieslist.com/">
+        <meta property="og:description" content="See a list and map of countries you can travel to from the United States">
+        <meta property="og:title" content="List of Open Countries">
+        <meta property="og:site_name" content="OpenCountriesList">
+        <meta property="og:image" content="preview.png">
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:url" content="https://opencountrieslist.com/">
+        <meta name="twitter:title" content="List of Open Countries">
+        <meta name="twitter:description" content="See a list and map of countries you can travel to from the United States">
+        <meta name="twitter:image" content="preview.png">
         
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" crossorigin="anonymous">
+
         <link href="styles.css" rel="stylesheet">
+
+        <link rel="icon" href="favicon.png">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="apple-touch-icon" href="favicon.png">
     </head>
     <body>
         <div id="loading">
             <div class="center-absolute">
-                <h1>Loading data, please wait...</h1>
+                <p style="font-size: 250%;">Loading data, please wait...</p>
                 <p>This should take no more than a few seconds.</p>
             </div>
         </div>
         <div class="container" style="max-height: 100%">
+            <div class="row pt-3 mt-3 pb-3">
+                <div class="col-12">
+                    <h1>Which countries may United States travelers visit?</h1>
+                </div>
+            </div>
+
             <div class="row pt-3 pb-3">
                 <div class="col-12">
-                    <h1>Countries Open to Travelers From the United States</h1>
+                    <p>This website contains information about every country that travelers from the United States may visit, according to data that is collected every few hours from hundreds of United States embassies.</p>
+                    <p>Please note that <a href="https://wwwnc.cdc.gov/travel/notices" rel="noopener noreferer">the CDC does not recommend travel</a>, especially non-essential. Always take precautions when traveling such as wearing your mask and avoiding large gatherings. Never travel when you know you are sick. For more information on the COVID-19 pandemic, please visit the CDC's <a href="https://www.cdc.gov/coronavirus/2019-ncov/index.html" rel="noopener noreferer">COVID-19 information page</a>.</p>
                 </div>
             </div>
 
             <div class="row pb-3">
                 <div class="col-12">
-                    <p>The information contained in this page is updated daily by pulling the latest data from every U.S. Embassy website.</p>
-                    <p><b>Last Update:</b> <span id="last-update"></span></p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div id="map-container" class="col-12" style="width: 100%; height: 60vh;"></div>
-            </div>
-
-            <div class="row pb-3">
-                <div class="col-12">
-                    <hr><br>
                     <div id="accordion">
                         <div class="card">
                             <div class="card-header" id="headingOne">
                                 <h5 class="mb-0">
                                     <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                                        How do I read the columns of this table?
+                                        How do I read the columns of table of open countries?
                                     </button>
                                 </h5>
                             </div>
                         </div>
-
                         <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
                             <div class="card-body">
                                 <ul>
@@ -72,10 +88,73 @@
                                 </ul>
                             </div>
                         </div>
+
+                        <div class="card">
+                            <div class="card-header" id="headingTwo">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        What should I do if I find incorrect data?
+                                    </button>
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>We're sorry we didn't provide you with high quality data! We'd love to get a chance to improve our algorithms or at least not display false information. Shoot us an email at <a href="mailto:contact@opencountrieslist.com">contact@opencountrieslist.com</a> and we will do our best to improve.</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header" id="headingThree">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Why are some of the columns in the table "UNKNOWN"?
+                                    </button>
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>Our data is sources from international United States embassies. Unfortunately, there is no standard for how the information we collect and present is publicized&mdash;and that is the problem we are trying to solve. Although we do our best to interpret the information, sometimes, our automated system is unable to interpret the non-standard information the embassies provide.</p>
+                                <p>To avoid displaying false information, we instead display "UNKNOWN" for the data we are uncertain about. We provide the URL for you to manually check or verify any entry.</p>
+                                <p>Note that "SEE URL" is similar to "UNKNOWN" in that it requires you to check the URL. When we display "SEE URL", our systems detected multiple different answers to the same question ("is the country open?"). This is usually due to the fact that some countries pass the responsibility of determining whether or not to stay open to states, territories, or even cities.</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header" id="headingFour">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        I'm a software developer or a company! May I use your data?
+                                    </button>
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>Almost certainly yes. However, please contact us at <a href="mailto:contact@opencountrieslist.com">contact@opencountrieslist.com</a> first to notify us of intent to use the data and purpose. This allows us, among other things, to have contact information to notify you of future potentially-breaking changes to the API, and we'll even through in instructions on how to access and interpret the data.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="row pt-3">
+                <div class="col-12">
+                    <p><b>Last Update:</b> <span id="last-update"></span></p>
+                </div>
+            </div>
+
+            <div class="row pt-3 pb-3">
+                <div class="col-12">
+                    <h2 id="open-map">Map of Open Countries</h2>
+                </div>
+                <div id="map-container" class="col-12" style="width: 100%; height: 60vh;"></div>
+            </div>
+
             <div class="row pb-3">
+                <div class="col-12 pb-3">
+                    <h2 id="open-list">List of Open Countries</h2>
+                </div>
                 <div class="col-12">
                     <table id="countries" class="display" style="width: 100%;">
                         <thead>
@@ -90,6 +169,14 @@
                         </thead>
                         <tbody id="countries-tbody"></tbody>
                     </table>
+                </div>
+            </div>
+            <div class="row pt-3 pb-3 mb-3">
+                <div class="col-12">
+                    <p style="color: gray">
+                        &copy; Copyright 2021, Aaron Cybersecurity Services<br>
+                        Contact: <a href="mailto:contact@opencountrieslist.com">contact@opencountrieslist.com</a>
+                    </p>
                 </div>
             </div>
         </div>

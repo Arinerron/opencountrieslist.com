@@ -175,7 +175,7 @@ function createMap(data) {
         5: 'Open to travelers'
     }
 
-    var cat_agg = [['Country', 'Classification', {role: 'tooltip', p:{html:true}}]];
+    var cat_agg = [['Country', 'Classification', {role: 'tooltip', p:{html:true}}]]
     for (var country of data['countries']) {
         cat_agg.push([
             country['abbreviation'], country['classification'], '<p style="white-space: nowrap"><b>' + country['name'] + ':</b> ' + texts[country['classification']] + '</span>'
@@ -190,7 +190,7 @@ function createMap(data) {
 
     function drawRegionsMap() {
         var data = google.visualization.arrayToDataTable(cat_agg)
-        console.log(data);
+        console.log(data)
 
         var options = {
             colorAxis: {minValue: 0, maxValue: 5, colors: ['#9EA7AD', '#2DCCFF', '#FF3838', '#FF3838', '#FCE83A', '#56F000']},
@@ -214,11 +214,13 @@ function createMap(data) {
 $(document).ready(function() {
     fetch('/data.json').then(response => response.json()).then(data => {
         console.debug('Received data:', data)
+        setTimeout(createMap.bind(null, data), 0)
 
         var last_update = (new Date(data['time'] * 1e3)).toLocaleString()
         document.getElementById('last-update').innerText = last_update
 
-        var countriesTableBody = $('#countries-tbody')
+        var countriesTableBody = document.getElementById('countries-tbody')
+        countriesTableBody.style.visibility = 'hidden'
         var abbrevs = {
             'CHINA': 'CN'
         }
@@ -264,13 +266,12 @@ $(document).ready(function() {
             }]
         })
 
-        createMap(data)
-
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
+        countriesTableBody.style.visibility = 'visible'
 
-        setTimeout(function() { document.getElementById('loading').style.display = 'none'; }, 1000);
+        setTimeout(function() { document.getElementById('loading').style.display = 'none'; }, 1000)
     }).catch((error) => {
         console.error('Error:', error)
         alert(`Failed to fetch data: ${error}`)

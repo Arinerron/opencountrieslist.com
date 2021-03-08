@@ -192,3 +192,25 @@ tr > td:nth-of-type(3) {
     border-top: 0;
     border-radius: 0.4em;
 }
+
+::-webkit-scrollbar {
+    width: 1.4em;
+    height: 1.4em;
+}
+
+::-webkit-scrollbar-button {
+    background: #ddd
+}
+::-webkit-scrollbar-track-piece {
+    background: #ddd
+}
+::-webkit-scrollbar-thumb {
+    background: #999
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #777
+}
+
+body {
+    scrollbar-width: 1.4em;
+}
