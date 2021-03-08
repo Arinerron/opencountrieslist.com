@@ -166,77 +166,48 @@ function _quarantine_required_el(country) {
 
 
 function createMap(data) {
-    var cat_agg = [[], [], [], [], [], []];
-    for (var country of data['countries']) {
-        cat_agg[country['classification']].push({
-            code: country['abbreviation']
-        })
+    var texts = {
+        0: 'Unknown status',
+        1: 'See URL for more info',
+        2: 'Not open to travelers',
+        3: 'Very hard to enter',
+        4: 'Hard to enter',
+        5: 'Open to travelers'
     }
 
-    var series = [
-        {
-            name: 'Unknown',
-            data: cat_agg[0],
-            color: '#9EA7AD'
-        },
-        {
-            name: 'Read More',
-            data: cat_agg[1],
-            color: '#2DCCFF'
-        },
-        {
-            name: 'Not Open',
-            data: cat_agg[2],
-            color: '#FF3838'
-        },
-        {
-            name: 'Very Hard to Enter',
-            data: cat_agg[3],
-            color: '#FFB302'
-        },
-        {
-            name: 'Hard to Enter',
-            data: cat_agg[4],
-            color: '#FCE83A'
-        },
-        {
-            name: 'Open',
-            data: cat_agg[5],
-            color: '#56F000'
+    var cat_agg = [['Country', 'Classification', {role: 'tooltip', p:{html:true}}]];
+    for (var country of data['countries']) {
+        cat_agg.push([
+            country['abbreviation'], country['classification'], '<p style="white-space: nowrap"><b>' + country['name'] + ':</b> ' + texts[country['classification']] + '</span>'
+        ])
+    }
+
+    google.charts.load('current', {
+        'packages':['geochart'],
+        'mapsApiKey': 'AIzaSyAKam0tf14-8M08QfWSWIZmM8W9gHFyT_o'
+    })
+    google.charts.setOnLoadCallback(drawRegionsMap)
+
+    function drawRegionsMap() {
+        var data = google.visualization.arrayToDataTable(cat_agg)
+        console.log(data);
+
+        var options = {
+            colorAxis: {minValue: 0, maxValue: 5, colors: ['#9EA7AD', '#2DCCFF', '#FF3838', '#FF3838', '#FCE83A', '#56F000']},
+            backgroundColor: '#f5f5f5',
+            datalessRegionColor: '#9EA7AD',
+            defaultColor: '#9EA7AD',
+            displayMode: 'regions',
+            tooltip: {
+                isHtml: true
+            },
+            legend: 'none',
+            keepAspectRatio: true
         }
-    ];
 
-    Highcharts.mapChart('map-container', {
-        chart: {
-            map: 'custom/world',
-            spacingBottom: 20,
-            backgroundColor: '#f5f5f5'
-        },
-
-        legend: {
-            enabled: false
-        },
-
-        title: {
-            text: ''
-        },
-
-        plotOptions: {
-            map: {
-                allAreas: false,
-                joinBy: ['iso-a2', 'code'],
-                dataLabels: {
-                    enabled: false
-                },
-                tooltip: {
-                    headerFormat: '',
-                    pointFormat: '{point.name}: <b>{series.name}</b>'
-                }
-            }
-        },
-
-        series: series,
-    });
+        var chart = new google.visualization.GeoChart(document.getElementById('map-container'))
+        chart.draw(data, options)
+    }
 }
 
 
@@ -297,6 +268,8 @@ $(document).ready(function() {
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
+
+        setTimeout(function() { document.getElementById('loading').style.display = 'none'; }, 1000);
     }).catch((error) => {
         console.error('Error:', error)
         alert(`Failed to fetch data: ${error}`)
