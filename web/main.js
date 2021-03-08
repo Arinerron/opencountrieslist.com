@@ -21,6 +21,30 @@ function _url_el(data) {
 }
 
 
+function _last_changed_el(country) {
+    const td = document.createElement('td')
+    var last_changed = country['last_changed'] || 0
+    if (country['classification'] === 0) {
+        last_changed = 0
+    }
+
+    td.innerText = (last_changed ? (new Date(country['last_changed'] * 1e3)).toLocaleDateString() : '')
+    td.setAttribute('data-order', ''+last_changed)
+    return td
+}
+
+
+function _country_name_el(country) {
+    const td = document.createElement('td')
+    const a = document.createElement('a')
+    a.rel = 'noopener noreferer'
+    a.href = country['url']
+    a.innerText = country['name']
+    td.append(a)
+    return td
+}
+
+
 function _classification_el(country) {
     const classification = country['classification']
     const preformatted = country['preformatted']
@@ -60,6 +84,13 @@ function _classification_el(country) {
     const span = document.createElement('span')
     span.innerText = texts[classification]
     td.append(span)
+    if (country['preformatted']) {
+        var msg = '<b>Are U.S. citizens permitted to enter the country?</b><br>' + country['preformatted'].join('<br>')
+        td.setAttribute('data-toggle', 'tooltip')
+        td.setAttribute('data-placement', 'right')
+        td.setAttribute('data-html', 'true')
+        td.setAttribute('title', msg)
+    }
     return td
 }
 
@@ -83,6 +114,8 @@ function _test_required_el(country) {
         1: 'REQUIRED',
         2: 'NOT REQUIRED'
     }
+
+    classNames[-1] = 'status-no'
     texts[-1] = ''
 
     const td = document.createElement('td')
@@ -116,6 +149,8 @@ function _quarantine_required_el(country) {
         1: 'REQUIRED',
         2: 'NOT REQUIRED'
     }
+
+    classNames[-1] = 'status-no'
     texts[-1] = ''
 
     const td = document.createElement('td')
@@ -220,11 +255,11 @@ $(document).ready(function() {
             const tr = document.createElement('tr')
             const cols = [
                 _text_el(abbrevs[country['abbreviation']] || country['abbreviation']),
-                _text_el(country['name']),
+                _country_name_el(country),
                 _classification_el(country),
                 _quarantine_required_el(country),
                 _test_required_el(country),
-                _url_el(country['url'])
+                _last_changed_el(country)
             ]
 
             for (var col of cols) { tr.append(col) }
@@ -251,10 +286,17 @@ $(document).ready(function() {
             }, {
                 targets: 4,
                 width: '12%'
+            }, {
+                targets: 5,
+                width: '12%'
             }]
         })
 
         createMap(data)
+
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
     }).catch((error) => {
         console.error('Error:', error)
         alert(`Failed to fetch data: ${error}`)

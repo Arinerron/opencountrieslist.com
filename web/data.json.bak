@@ -1,0 +1,2231 @@
+{
+  "time": 1615158499,
+  "countries": [
+    {
+      "name": "Afghanistan",
+      "abbreviation": "AF",
+      "url": "https://af.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes, with a valid visa."
+      ],
+      "test_required": 0,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Albania",
+      "abbreviation": "AL",
+      "url": "https://al.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 2,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Algeria",
+      "abbreviation": "DZ",
+      "url": "https://dz.usembassy.gov/covid-19-information/",
+      "classification": 4,
+      "preformatted": [
+        "Yes However, please be advised that at this time, entry into the country for U.S. citizens may require dual U.S.Algerian citizenship, or special permission. Algeria does require a visa. Please visit the Algerian Consulate in New York ( httpswww.algeriacgny.orgvisaapplication ) or the Algerian Embassy in Washington, D.C. ( httpswww.algerianembassy.orgconsularaffairsvisavisainstructions.html )."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Andorra",
+      "abbreviation": "ES",
+      "url": "https://es.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Angola",
+      "abbreviation": "AO",
+      "url": "https://ao.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 0,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Anguilla",
+      "abbreviation": "BB",
+      "url": "https://bb.usembassy.gov/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "Yes.",
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Antigua and Barbuda",
+      "abbreviation": "BB",
+      "url": "https://bb.usembassy.gov/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "Yes.",
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Argentina",
+      "abbreviation": "AR",
+      "url": "https://ar.usembassy.gov/covid-19/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Armenia",
+      "abbreviation": "AM",
+      "url": "https://am.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 2,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Aruba",
+      "abbreviation": "CW",
+      "url": "https://cw.usconsulate.gov/news-events/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "Yes.",
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Australia",
+      "abbreviation": "AU",
+      "url": "https://au.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Austria",
+      "abbreviation": "AT",
+      "url": "https://at.usembassy.gov/covid-19-information-february-25-2020/",
+      "classification": 3,
+      "preformatted": [
+        "No (with few exceptions, see below)."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Azerbajian",
+      "abbreviation": "AZ",
+      "url": "https://az.usembassy.gov/covid-19-information-for-azerbaijan/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Bahrain",
+      "abbreviation": "BH",
+      "url": "https://bh.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 2,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Bangladesh",
+      "abbreviation": "BD",
+      "url": "https://bd.usembassy.gov/covid-19-information/",
+      "classification": 0,
+      "test_required": 0,
+      "quarantine_required": 0,
+      "preformatted": []
+    },
+    {
+      "name": "Barbados",
+      "abbreviation": "BB",
+      "url": "https://bb.usembassy.gov/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "Yes.",
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Belarus",
+      "abbreviation": "BY",
+      "url": "https://by.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 0,
+      "test_required": 0,
+      "quarantine_required": 0,
+      "preformatted": []
+    },
+    {
+      "name": "Belgium",
+      "abbreviation": "BE",
+      "url": "https://be.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Belize",
+      "abbreviation": "BZ",
+      "url": "https://bz.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Benin",
+      "abbreviation": "BJ",
+      "url": "https://bj.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 2,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Bermuda",
+      "abbreviation": "BM",
+      "url": "https://bm.usconsulate.gov/covid-19-information/",
+      "classification": 0,
+      "preformatted": [
+        "."
+      ],
+      "test_required": 1,
+      "quarantine_required": 0
+    },
+    {
+      "name": "Bhutan",
+      "abbreviation": "IN",
+      "url": "https://in.usembassy.gov/covid-19-information/",
+      "classification": 4,
+      "preformatted": [
+        "India Yes, depending on the purpose of travel."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Bolivia",
+      "abbreviation": "BO",
+      "url": "https://bo.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Bonaire, Sint Eustatius and Saba",
+      "abbreviation": "CW",
+      "url": "https://cw.usconsulate.gov/news-events/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "Yes.",
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Bosnia and Herzegovina",
+      "abbreviation": "BA",
+      "url": "https://ba.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Botswana",
+      "abbreviation": "BW",
+      "url": "https://bw.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Brazil",
+      "abbreviation": "BR",
+      "url": "https://br.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Brazil Yes."
+      ],
+      "test_required": 0,
+      "quarantine_required": 2
+    },
+    {
+      "name": "British Virgin Islands",
+      "abbreviation": "BB",
+      "url": "https://bb.usembassy.gov/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "Yes.",
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Brunei",
+      "abbreviation": "BN",
+      "url": "https://bn.usembassy.gov/u-s-citizen-services-covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Bulgaria",
+      "abbreviation": "BG",
+      "url": "https://bg.usembassy.gov/novel-coronavirus-covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Burkina Faso",
+      "abbreviation": "BF",
+      "url": "https://bf.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Burundi",
+      "abbreviation": "BI",
+      "url": "https://bi.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes, but only through Melchior Ndadaye International Airport. Land and water borders are currently closed except for transporting cargo."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Cabo Verde",
+      "abbreviation": "CV",
+      "url": "https://cv.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Cambodia",
+      "abbreviation": "KH",
+      "url": "https://kh.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Cameroon",
+      "abbreviation": "CM",
+      "url": "https://cm.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Canada",
+      "abbreviation": "CA",
+      "url": "https://ca.usembassy.gov/covid-19-information-canada/",
+      "classification": 0,
+      "test_required": 0,
+      "quarantine_required": 0,
+      "preformatted": []
+    },
+    {
+      "name": "Cayman Islands",
+      "abbreviation": "JM",
+      "url": "https://jm.usembassy.gov/covid-19-information-cayman-islands/",
+      "classification": 5,
+      "preformatted": [
+        "Some U.S. Citizens are permitted to enter. From October 1, 2020 until further notice, travelers eligible to visit the Cayman Islands are."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Central African Republic",
+      "abbreviation": "CF",
+      "url": "https://cf.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 2,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Chad",
+      "abbreviation": "TD",
+      "url": "https://td.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes. However, land borders are restricted."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Chile",
+      "abbreviation": "CL",
+      "url": "https://cl.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 0
+    },
+    {
+      "name": "China",
+      "abbreviation": "CN",
+      "url": "https://china.usembassy-china.org.cn/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Colombia",
+      "abbreviation": "CO",
+      "url": "https://co.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 0
+    },
+    {
+      "name": "Comoros",
+      "abbreviation": "MG",
+      "url": "https://mg.usembassy.gov/u-s-citizen-services/security-and-travel-information/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "Yes.",
+        "U.S. citizens resident in Madagascar may return. Other U.S. visitors are not allowed."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Costa Rica",
+      "abbreviation": "CR",
+      "url": "https://cr.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 2,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Cote d'Ivoire",
+      "abbreviation": "CI",
+      "url": "https://ci.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Croatia",
+      "abbreviation": "HR",
+      "url": "https://hr.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 0,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Cuba",
+      "abbreviation": "CU",
+      "url": "https://cu.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Curacao",
+      "abbreviation": "CW",
+      "url": "https://cw.usconsulate.gov/news-events/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "Yes.",
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Cyprus",
+      "abbreviation": "CY",
+      "url": "https://cy.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 0,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Czech Republic",
+      "abbreviation": "CZ",
+      "url": "https://cz.usembassy.gov/covid-19-information/",
+      "classification": 0,
+      "test_required": 0,
+      "quarantine_required": 0,
+      "preformatted": []
+    },
+    {
+      "name": "Democratic Republic of the Congo",
+      "abbreviation": "CD",
+      "url": "https://cd.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 0,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Denmark",
+      "abbreviation": "DK",
+      "url": "https://dk.usembassy.gov/u-s-citizen-services/security-and-travel-information/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No unless the traveler qualifies for an EU andor Danish travel exception."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Djibouti",
+      "abbreviation": "DJ",
+      "url": "https://dj.usembassy.gov/covid-19-information-25-february-2020/",
+      "classification": 5,
+      "preformatted": [
+        "Yes with an approved eVisa obtained in advance of travel."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Dominica",
+      "abbreviation": "BB",
+      "url": "https://bb.usembassy.gov/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "Yes.",
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Dominican Republic",
+      "abbreviation": "DO",
+      "url": "https://do.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 2,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Ecuador",
+      "abbreviation": "EC",
+      "url": "https://ec.usembassy.gov/covid-19-information-ecu/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 0,
+      "quarantine_required": 0
+    },
+    {
+      "name": "Egypt",
+      "abbreviation": "EG",
+      "url": "https://eg.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "El Salvador",
+      "abbreviation": "SV",
+      "url": "https://sv.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Equatorial Guinea",
+      "abbreviation": "GQ",
+      "url": "https://gq.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Eritrea",
+      "abbreviation": "ER",
+      "url": "https://er.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "The country Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Estonia",
+      "abbreviation": "EE",
+      "url": "https://ee.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 2,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Eswatini",
+      "abbreviation": "SZ",
+      "url": "https://sz.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Ethiopia",
+      "abbreviation": "ET",
+      "url": "https://et.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Fiji",
+      "abbreviation": "FJ",
+      "url": "https://fj.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "No, except in special circumstances.",
+        "Yes.",
+        "No, except in limited circumstances.",
+        "No, with limited exceptions.",
+        "Yes, but entry is restricted.",
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Finland",
+      "abbreviation": "FI",
+      "url": "https://fi.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 2,
+      "quarantine_required": 2
+    },
+    {
+      "name": "France",
+      "abbreviation": "FR",
+      "url": "https://fr.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "French Guiana",
+      "abbreviation": "SR",
+      "url": "https://sr.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "French Polynesia",
+      "abbreviation": "FJ",
+      "url": "https://fj.usembassy.gov/covid-19-information/",
+      "classification": 0,
+      "test_required": 0,
+      "quarantine_required": 0,
+      "preformatted": []
+    },
+    {
+      "name": "French West Indies",
+      "abbreviation": "BB",
+      "url": "https://bb.usembassy.gov/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "Yes.",
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Gabon",
+      "abbreviation": "GA",
+      "url": "https://ga.usembassy.gov/u-s-citizen-services/coronavirus-update/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Georgia",
+      "abbreviation": "GE",
+      "url": "https://ge.usembassy.gov/covid-19-information-on-georgia/",
+      "classification": 5,
+      "preformatted": [
+        "Yes, with additional documentation."
+      ],
+      "test_required": 0,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Germany",
+      "abbreviation": "DE",
+      "url": "https://de.usembassy.gov/covid-19-information/",
+      "classification": 3,
+      "preformatted": [
+        "No (with a few exceptions, see below)."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Ghana",
+      "abbreviation": "GH",
+      "url": "https://gh.usembassy.gov/ghana-covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 0
+    },
+    {
+      "name": "Greece",
+      "abbreviation": "GR",
+      "url": "https://gr.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Grenada",
+      "abbreviation": "BB",
+      "url": "https://bb.usembassy.gov/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "Yes.",
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Guatemala",
+      "abbreviation": "GT",
+      "url": "https://gt.usembassy.gov/alert-covid-19/",
+      "classification": 5,
+      "preformatted": [
+        "Yes. Please see information above on U.S. citizens who have traveled to the UK or South Africa within the last 14 days."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Guinea",
+      "abbreviation": "GN",
+      "url": "https://gn.usembassy.gov/u-s-citizen-services/",
+      "classification": 0,
+      "test_required": 0,
+      "quarantine_required": 0,
+      "preformatted": []
+    },
+    {
+      "name": "Guyana",
+      "abbreviation": "GY",
+      "url": "https://gy.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Haiti",
+      "abbreviation": "HT",
+      "url": "https://ht.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Hong Kong",
+      "abbreviation": "HK",
+      "url": "https://hk.usconsulate.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "Generally, no. Only U.S. citizens with Hong Kong residency, diplomats, and U.S. citizens who have been present in mainland China, Taiwan and Macau uninterruptedly for the past 21 days are permitted to enter Hong Kong.",
+        "Unless nonresident American citizens have spent the preceding 21 days in Mainland China, Hong Kong or Taiwan and have a strong tie to Macau, no. Only U.S. citizens with Macau residency are permitted to enter Macau."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Hungary",
+      "abbreviation": "HU",
+      "url": "https://hu.usembassy.gov/covid-19/",
+      "classification": 3,
+      "preformatted": [
+        "Generally no, with limited exceptions."
+      ],
+      "test_required": 2,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Iceland",
+      "abbreviation": "IS",
+      "url": "https://is.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "India",
+      "abbreviation": "IN",
+      "url": "https://in.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 4,
+      "preformatted": [
+        "India Yes, depending on the purpose of travel."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Indonesia",
+      "abbreviation": "ID",
+      "url": "https://id.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes, but only with a valid residence permit (KITAS or KITAP). At the current time, the Indonesian government has prohibited foreign visitors from transiting and traveling to Indonesian Territory unless they are in possession of a valid residence permit. Visafree and visaonarrival entry for all foreign travelers, including U.S. citizens, remains suspended. The government has not indicated a timeline for when the restrictions on international visitors will expire. Visit Indonesian Immigration (httpswww.imigrasi.go.id) and the Indonesian Embassy (httpskemlu.go.idwashingtonen) for updated visa and entry requirements as regulations may change frequently."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Iran",
+      "abbreviation": "IR",
+      "url": "https://ir.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes.",
+        "Yes Is"
+      ],
+      "test_required": 0,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Iraq",
+      "abbreviation": "IQ",
+      "url": "https://iq.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Ireland",
+      "abbreviation": "IE",
+      "url": "https://ie.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 0,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Israel, The West Bank and Gaza",
+      "abbreviation": "IL",
+      "url": "https://il.usembassy.gov/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "Yes.",
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Italy",
+      "abbreviation": "IT",
+      "url": "https://it.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 2,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Jamaica",
+      "abbreviation": "JM",
+      "url": "https://jm.usembassy.gov/covid-19-information-jamaica/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Japan",
+      "abbreviation": "JP",
+      "url": "https://jp.usembassy.gov/covid-19-information/",
+      "classification": 3,
+      "preformatted": [
+        "Very limited."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Jordan",
+      "abbreviation": "JO",
+      "url": "https://jo.usembassy.gov/covid-19-information/",
+      "classification": 0,
+      "preformatted": [
+        "."
+      ],
+      "test_required": 0,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Kazakhstan",
+      "abbreviation": "KZ",
+      "url": "https://kz.usembassy.gov/covid-19-information/",
+      "classification": 4,
+      "preformatted": [
+        "Yes, subject to strict limitations."
+      ],
+      "test_required": 1,
+      "quarantine_required": 0
+    },
+    {
+      "name": "Kenya",
+      "abbreviation": "KE",
+      "url": "https://ke.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Kiribati",
+      "abbreviation": "FJ",
+      "url": "https://fj.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "No, except in special circumstances.",
+        "Yes.",
+        "No, except in limited circumstances.",
+        "No, with limited exceptions.",
+        "Yes, but entry is restricted.",
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Kosovo",
+      "abbreviation": "XK",
+      "url": "https://xk.usembassy.gov/covid-19-information-u-s-embassy-pristina-kosovo/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 2,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Kuwait",
+      "abbreviation": "KW",
+      "url": "https://kw.usembassy.gov/covid-19-information/",
+      "classification": 3,
+      "preformatted": [
+        "No (see below for exceptions)."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Laos",
+      "abbreviation": "LA",
+      "url": "https://la.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No. The Government of Laos is not issuing tourist visas at this time. However, those who currently hold valid multiple entry longterm visas (i.e. a work visa or diplomatic visa) may return to Laos, subject to additional requirements."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Latvia",
+      "abbreviation": "LV",
+      "url": "https://lv.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Lebanon",
+      "abbreviation": "LB",
+      "url": "https://lb.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 0
+    },
+    {
+      "name": "Lesotho",
+      "abbreviation": "LS",
+      "url": "https://ls.usembassy.gov/lesotho-country-specific-information-on-coronavirus-worldwide-outbreak/",
+      "classification": 0,
+      "test_required": 0,
+      "quarantine_required": 0,
+      "preformatted": []
+    },
+    {
+      "name": "Liberia",
+      "abbreviation": "LR",
+      "url": "https://lr.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 2,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Libya",
+      "abbreviation": "LY",
+      "url": "https://ly.usembassy.gov/embassy/",
+      "classification": 0,
+      "test_required": 0,
+      "quarantine_required": 0,
+      "preformatted": []
+    },
+    {
+      "name": "Liechtenstein",
+      "abbreviation": "CH",
+      "url": "https://ch.usembassy.gov/covid-19/",
+      "classification": 4,
+      "preformatted": [
+        "Yes, but not for tourism."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Lithuania",
+      "abbreviation": "LT",
+      "url": "https://lt.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No. Currently, U.S. citizens are prohibited from entering Lithuania."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Luxembourg",
+      "abbreviation": "LU",
+      "url": "https://lu.usembassy.gov/covid-19-information/",
+      "classification": 3,
+      "preformatted": [
+        "No (with a few exceptions, see below)."
+      ],
+      "test_required": 0,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Macau",
+      "abbreviation": "HK",
+      "url": "https://hk.usconsulate.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "Generally, no. Only U.S. citizens with Hong Kong residency, diplomats, and U.S. citizens who have been present in mainland China, Taiwan and Macau uninterruptedly for the past 21 days are permitted to enter Hong Kong.",
+        "Unless nonresident American citizens have spent the preceding 21 days in Mainland China, Hong Kong or Taiwan and have a strong tie to Macau, no. Only U.S. citizens with Macau residency are permitted to enter Macau."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Madagascar",
+      "abbreviation": "MG",
+      "url": "https://mg.usembassy.gov/u-s-citizen-services/security-and-travel-information/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "Yes.",
+        "U.S. citizens resident in Madagascar may return. Other U.S. visitors are not allowed."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Malawi",
+      "abbreviation": "MW",
+      "url": "https://mw.usembassy.gov/covid-19-information/",
+      "classification": 0,
+      "test_required": 0,
+      "quarantine_required": 0,
+      "preformatted": []
+    },
+    {
+      "name": "Malaysia",
+      "abbreviation": "MY",
+      "url": "https://my.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 3,
+      "preformatted": [
+        "No, with very limited exceptions."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Maldives",
+      "abbreviation": "MV",
+      "url": "https://mv.usmission.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 0,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Mali",
+      "abbreviation": "ML",
+      "url": "https://ml.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Malta",
+      "abbreviation": "MT",
+      "url": "https://mt.usembassy.gov/u-s-citizen-services/information-on-covid-19/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Marshall Islands",
+      "abbreviation": "MH",
+      "url": "https://mh.usembassy.gov/covid-19-information/",
+      "classification": 0,
+      "test_required": 0,
+      "quarantine_required": 0,
+      "preformatted": []
+    },
+    {
+      "name": "Mauritania",
+      "abbreviation": "MR",
+      "url": "https://mr.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Mauritius",
+      "abbreviation": "MU",
+      "url": "https://mu.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Mexico",
+      "abbreviation": "MX",
+      "url": "https://mx.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 2,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Micronesia",
+      "abbreviation": "FM",
+      "url": "https://fm.usembassy.gov/covid-19-information/",
+      "classification": 0,
+      "test_required": 0,
+      "quarantine_required": 0,
+      "preformatted": []
+    },
+    {
+      "name": "Moldova",
+      "abbreviation": "MD",
+      "url": "https://md.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Mongolia",
+      "abbreviation": "MN",
+      "url": "https://mn.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Montenegro",
+      "abbreviation": "ME",
+      "url": "https://me.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Montserrat",
+      "abbreviation": "BB",
+      "url": "https://bb.usembassy.gov/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "Yes.",
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Morocco",
+      "abbreviation": "MA",
+      "url": "https://ma.usembassy.gov/25161/",
+      "classification": 4,
+      "preformatted": [
+        "It depends."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Mozambique",
+      "abbreviation": "MZ",
+      "url": "https://mz.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Namibia",
+      "abbreviation": "NA",
+      "url": "https://na.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Nauru",
+      "abbreviation": "FJ",
+      "url": "https://fj.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "No, except in special circumstances.",
+        "Yes.",
+        "No, except in limited circumstances.",
+        "No, with limited exceptions.",
+        "Yes, but entry is restricted.",
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Nepal",
+      "abbreviation": "NP",
+      "url": "https://np.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Netherlands",
+      "abbreviation": "NL",
+      "url": "https://nl.usembassy.gov/covid-19-information-3/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "New Caledonia",
+      "abbreviation": "FJ",
+      "url": "https://fj.usembassy.gov/covid-19-information/",
+      "classification": 0,
+      "test_required": 0,
+      "quarantine_required": 0,
+      "preformatted": []
+    },
+    {
+      "name": "New Zealand",
+      "abbreviation": "NZ",
+      "url": "https://nz.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Nicaragua",
+      "abbreviation": "NI",
+      "url": "https://ni.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Niger",
+      "abbreviation": "NE",
+      "url": "https://ne.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Nigeria",
+      "abbreviation": "NG",
+      "url": "https://ng.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "North Macedonia",
+      "abbreviation": "MK",
+      "url": "https://mk.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 2,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Norway",
+      "abbreviation": "NO",
+      "url": "https://no.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No, unless the traveler qualifies for a travel exception. The complete list of border closure exceptions and most uptodate information can be found on the Norwegian Directorate of Immigration COVID19 information page."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Oman",
+      "abbreviation": "OM",
+      "url": "https://om.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Pakistan",
+      "abbreviation": "PK",
+      "url": "https://pk.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Palau",
+      "abbreviation": "PW",
+      "url": "https://pw.usembassy.gov/covid-19-information/",
+      "classification": 0,
+      "test_required": 0,
+      "quarantine_required": 0,
+      "preformatted": []
+    },
+    {
+      "name": "Panama",
+      "abbreviation": "PA",
+      "url": "https://pa.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Papua New Guinea",
+      "abbreviation": "PG",
+      "url": "https://pg.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes, but only if they meet other certain criteria. Please see the Vanuatus Department of Immigration and Passport Services for more information. Moreover, there are currently no regular incoming commercial air options. Travelers who are able to be accommodated on government repatriation flights or other ad hoc flights must register and be approved for their travel through the Vanuatu Electronic Traveler System. Registration should be done as far in advance as possible.",
+        "Yes, but only under special or compelling circumstances and subject to the availability of very limited flight options. Travelers should not attempt to enter the country via its sea borders without preapproval. Prospective travelers must submit a request to enter through the Office of the Secretary to the Prime Minister and the Ministry of Foreign Affairs and External Trade by writing to the head of the governments COVID19 committee, Permanent Secretary James Remobatu (jremobatupmc.gov.sb). Prospective travelers should clearly describe any compelling circumstances.",
+        "Yes. but please read this section carefully. Travelers are only allowed to enter with a valid visa and explicit written approval to enter from the National Pandemic Controller. Under measures instituted by the National Pandemic Controller, incoming travelers are only allowed to enter by air at Port Moresby International Airport. In general, travelers should not attempt to enter the country via its sea and land borders unless they have explicit approval to do so. Visas on arrival are not available at this time."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Paraguay",
+      "abbreviation": "PY",
+      "url": "https://py.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Peru",
+      "abbreviation": "PE",
+      "url": "https://pe.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Philippines",
+      "abbreviation": "PH",
+      "url": "https://ph.usembassy.gov/covid-19-information/",
+      "classification": 4,
+      "preformatted": [
+        "Yes, in limited circumstances pursuant to BI guidelines. The Philippine government introduced departure requirements for foreign nationals effective March 1, 2021."
+      ],
+      "test_required": 2,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Poland",
+      "abbreviation": "PL",
+      "url": "https://pl.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 2,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Portugal",
+      "abbreviation": "PT",
+      "url": "https://pt.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No, U.S. citizens cannot travel directly from the United States to Portugal for nonessential travel (i.e. tourism). Only Portuguese nationals, holders of Portuguese and EUmember residency permits, and holders of other longterm visas issued by Portuguese authorities may enter the country."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Qatar",
+      "abbreviation": "QA",
+      "url": "https://qa.usembassy.gov/covid-19-information-4/",
+      "classification": 0,
+      "test_required": 0,
+      "quarantine_required": 0,
+      "preformatted": []
+    },
+    {
+      "name": "Republic of the Congo",
+      "abbreviation": "CG",
+      "url": "https://cg.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Romania",
+      "abbreviation": "RO",
+      "url": "https://ro.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No, unless they meet one of the exceptions for entry listed in the Government Decision no. 35 of February 11."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Russia",
+      "abbreviation": "RU",
+      "url": "https://ru.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Rwanda",
+      "abbreviation": "RW",
+      "url": "https://rw.usembassy.gov/health-alert-covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Saint Kitts and Nevis",
+      "abbreviation": "BB",
+      "url": "https://bb.usembassy.gov/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "Yes.",
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Saint Lucia",
+      "abbreviation": "BB",
+      "url": "https://bb.usembassy.gov/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "Yes.",
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Saint Vincent and The Grenadines",
+      "abbreviation": "BB",
+      "url": "https://bb.usembassy.gov/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "Yes.",
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Samoa",
+      "abbreviation": "WS",
+      "url": "https://ws.usembassy.gov/covid-19-information/",
+      "classification": 4,
+      "preformatted": [
+        "Yes, in very limited cases and travelers must be cleared by Samoan Ministry of Foreign Affairs."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Sao Tome and Principe",
+      "abbreviation": "GA",
+      "url": "https://ga.usembassy.gov/u-s-citizen-services/coronavirus-update/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Saudi Arabia",
+      "abbreviation": "SA",
+      "url": "https://sa.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "Saudi Arabia No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Senegal",
+      "abbreviation": "SN",
+      "url": "https://sn.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Serbia",
+      "abbreviation": "RS",
+      "url": "https://rs.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Seychelles",
+      "abbreviation": "MU",
+      "url": "https://mu.usembassy.gov/covid-19-seychelles/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Sierra Leone",
+      "abbreviation": "SL",
+      "url": "https://sl.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Singapore",
+      "abbreviation": "SG",
+      "url": "https://sg.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes (subject to restrictions as noted below)."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Slovakia",
+      "abbreviation": "SK",
+      "url": "https://sk.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Slovakia No, in most cases."
+      ],
+      "test_required": 2,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Slovenia",
+      "abbreviation": "SI",
+      "url": "https://si.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 2,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Solomon Islands",
+      "abbreviation": "PG",
+      "url": "https://pg.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes, but only if they meet other certain criteria. Please see the Vanuatus Department of Immigration and Passport Services for more information. Moreover, there are currently no regular incoming commercial air options. Travelers who are able to be accommodated on government repatriation flights or other ad hoc flights must register and be approved for their travel through the Vanuatu Electronic Traveler System. Registration should be done as far in advance as possible.",
+        "Yes, but only under special or compelling circumstances and subject to the availability of very limited flight options. Travelers should not attempt to enter the country via its sea borders without preapproval. Prospective travelers must submit a request to enter through the Office of the Secretary to the Prime Minister and the Ministry of Foreign Affairs and External Trade by writing to the head of the governments COVID19 committee, Permanent Secretary James Remobatu (jremobatupmc.gov.sb). Prospective travelers should clearly describe any compelling circumstances.",
+        "Yes. but please read this section carefully. Travelers are only allowed to enter with a valid visa and explicit written approval to enter from the National Pandemic Controller. Under measures instituted by the National Pandemic Controller, incoming travelers are only allowed to enter by air at Port Moresby International Airport. In general, travelers should not attempt to enter the country via its sea and land borders unless they have explicit approval to do so. Visas on arrival are not available at this time."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Somalia",
+      "abbreviation": "SO",
+      "url": "https://so.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "South Africa",
+      "abbreviation": "ZA",
+      "url": "https://za.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "South Korea",
+      "abbreviation": "KR",
+      "url": "https://kr.usembassy.gov/022420-covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes. There is a mandatory 14day quarantine and predeparture testing requirement for all inbound travelers. See Quarantine Requirements below for more information."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "South Sudan",
+      "abbreviation": "SS",
+      "url": "https://ss.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Spain",
+      "abbreviation": "ES",
+      "url": "https://es.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Sri Lanka",
+      "abbreviation": "LK",
+      "url": "https://lk.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Sudan",
+      "abbreviation": "SD",
+      "url": "https://sd.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Suriname",
+      "abbreviation": "SR",
+      "url": "https://sr.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Sweden",
+      "abbreviation": "SE",
+      "url": "https://se.usembassy.gov/covid-19-coronavirus-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Switzerland",
+      "abbreviation": "CH",
+      "url": "https://ch.usembassy.gov/covid-19/",
+      "classification": 4,
+      "preformatted": [
+        "Yes, but not for tourism."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Syria",
+      "abbreviation": "SY",
+      "url": "https://sy.usembassy.gov/embassy/damascus/",
+      "classification": 0,
+      "test_required": 0,
+      "quarantine_required": 0,
+      "preformatted": []
+    },
+    {
+      "name": "Tajikistan",
+      "abbreviation": "TJ",
+      "url": "https://tj.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Tanzania",
+      "abbreviation": "TZ",
+      "url": "https://tz.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 2,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Thailand",
+      "abbreviation": "TH",
+      "url": "https://th.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "The Bahamas",
+      "abbreviation": "BS",
+      "url": "https://bs.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "The Gambia",
+      "abbreviation": "GM",
+      "url": "https://gm.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "The Kyrgyz Republic",
+      "abbreviation": "KG",
+      "url": "https://kg.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Togo",
+      "abbreviation": "TG",
+      "url": "https://tg.usembassy.gov/u-s-citizen-services/security-and-travel-information/covid-19/",
+      "classification": 5,
+      "preformatted": [
+        "To Togo Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Tonga",
+      "abbreviation": "FJ",
+      "url": "https://fj.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "No, except in special circumstances.",
+        "Yes.",
+        "No, except in limited circumstances.",
+        "No, with limited exceptions.",
+        "Yes, but entry is restricted.",
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Trinidad and Tobago",
+      "abbreviation": "TT",
+      "url": "https://tt.usembassy.gov/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Tunisia",
+      "abbreviation": "TN",
+      "url": "https://tn.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Turkey",
+      "abbreviation": "TR",
+      "url": "https://tr.usembassy.gov/covid-19-information/",
+      "classification": 0,
+      "test_required": 0,
+      "quarantine_required": 0,
+      "preformatted": []
+    },
+    {
+      "name": "Turkmenistan",
+      "abbreviation": "TM",
+      "url": "https://tm.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 0,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Turks and Caicos",
+      "abbreviation": "BS",
+      "url": "https://bs.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Tuvalu",
+      "abbreviation": "FJ",
+      "url": "https://fj.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 1,
+      "preformatted": [
+        "No, except in special circumstances.",
+        "Yes.",
+        "No, except in limited circumstances.",
+        "No, with limited exceptions.",
+        "Yes, but entry is restricted.",
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Uganda",
+      "abbreviation": "UG",
+      "url": "https://ug.usembassy.gov/uganda-has-not-confirmed-cases-of-covid-19-within-its-borders-february-25-2020/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Ukraine",
+      "abbreviation": "UA",
+      "url": "https://ua.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 2,
+      "quarantine_required": 1
+    },
+    {
+      "name": "United Arab Emirates",
+      "abbreviation": "AE",
+      "url": "https://ae.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "United Kingdom",
+      "abbreviation": "UK",
+      "url": "https://uk.usembassy.gov/covid-19-coronavirus-information/",
+      "classification": 0,
+      "test_required": 0,
+      "quarantine_required": 0,
+      "preformatted": []
+    },
+    {
+      "name": "Uruguay",
+      "abbreviation": "UY",
+      "url": "https://uy.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Uzbekistan",
+      "abbreviation": "UZ",
+      "url": "https://uz.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Vanuatu",
+      "abbreviation": "PG",
+      "url": "https://pg.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes, but only if they meet other certain criteria. Please see the Vanuatus Department of Immigration and Passport Services for more information. Moreover, there are currently no regular incoming commercial air options. Travelers who are able to be accommodated on government repatriation flights or other ad hoc flights must register and be approved for their travel through the Vanuatu Electronic Traveler System. Registration should be done as far in advance as possible.",
+        "Yes, but only under special or compelling circumstances and subject to the availability of very limited flight options. Travelers should not attempt to enter the country via its sea borders without preapproval. Prospective travelers must submit a request to enter through the Office of the Secretary to the Prime Minister and the Ministry of Foreign Affairs and External Trade by writing to the head of the governments COVID19 committee, Permanent Secretary James Remobatu (jremobatupmc.gov.sb). Prospective travelers should clearly describe any compelling circumstances.",
+        "Yes. but please read this section carefully. Travelers are only allowed to enter with a valid visa and explicit written approval to enter from the National Pandemic Controller. Under measures instituted by the National Pandemic Controller, incoming travelers are only allowed to enter by air at Port Moresby International Airport. In general, travelers should not attempt to enter the country via its sea and land borders unless they have explicit approval to do so. Visas on arrival are not available at this time."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Venezuela",
+      "abbreviation": "VE",
+      "url": "https://ve.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 2
+    },
+    {
+      "name": "Vietnam",
+      "abbreviation": "VN",
+      "url": "https://vn.usembassy.gov/u-s-citizen-services/covid-19-information/",
+      "classification": 2,
+      "preformatted": [
+        "No."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Yemen",
+      "abbreviation": "YE",
+      "url": "https://ye.usembassy.gov/embassy/",
+      "classification": 0,
+      "test_required": 0,
+      "quarantine_required": 0,
+      "preformatted": []
+    },
+    {
+      "name": "Zambia",
+      "abbreviation": "ZM",
+      "url": "https://zm.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 1
+    },
+    {
+      "name": "Zimbabwe",
+      "abbreviation": "ZW",
+      "url": "https://zw.usembassy.gov/covid-19-information/",
+      "classification": 5,
+      "preformatted": [
+        "Yes."
+      ],
+      "test_required": 1,
+      "quarantine_required": 0
+    }
+  ]
+}

@@ -100,7 +100,8 @@ body {
 }
 
 .status-rarely {
-    background-color: #FFFF68 !important;
+    background-color: #FF9E9E !important;
+    /* background-color: #FFFF68 !important; */
 }
 
 .status-sometimes {
@@ -111,14 +112,39 @@ body {
     background-color: #BCFF66 !important;
 }
 
-tr > td:nth-of-type(6) {
+/*tr > td:nth-of-type(6) {
     max-width: 100px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}*/
+
+tr > td {
+    padding-top: 0.2em !important;
+    padding-bottom: 0.2em !important;
+}
+
+tr > td:nth-of-type(1) {
+    font-weight: bold;
+}
+
+tr > td:nth-of-type(1),
+tr > td:nth-of-type(6),
+tr > td:nth-of-type(5),
+tr > td:nth-of-type(4),
+tr > td:nth-of-type(3) {
+    font-family: monospace;
+}
+
+#last-update {
+    font-family: monospace;
 }
 
 /* TODO: remove this */
 .highcharts-credits {
     display: none;
+}
+
+.tooltip-inner {
+    max-width: 40em !important;
 }

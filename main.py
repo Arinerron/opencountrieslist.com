@@ -11,6 +11,8 @@ import colorlog
 import html.parser
 import io
 import json
+import hashlib
+import datetime
 
 logger = logging.getLogger('')
 logger.setLevel(logging.DEBUG)
@@ -56,6 +58,22 @@ def has_file_expired(filename, expire_after=60*60*24):
         return True
 
 
+def normalize_country_filename(country_name):
+    return country_name.lower().replace('.', '').replace('/', '').replace(' ', '_')
+
+
+def fetch_url(country_name, url):
+    filename = 'data/country_' + normalize_country_filename(country_name) + '_' + hashlib.sha256(url.encode()).hexdigest() + '.html'
+
+    if has_file_expired(filename):
+        logger.debug('URL %r for country %r has expired, fetching new data...' % (url, country_name))
+        with open(filename, 'w') as f:
+            f.write(requests.get(url).text)
+
+    with open(filename, 'r') as f:
+        return f.read()
+
+
 def parse_directory():
     DIR_URL = 'https://travel.state.gov/content/travel/en/traveladvisories/COVID-19-Country-Specific-Information.html'
     FILENAME = 'data/directory.html'
@@ -70,17 +88,23 @@ def parse_directory():
 
     countries = dict()
 
-    rstring = r'<\/tr><tr><td><a href="(https?:\/\/((..|china))\.(usembassy-china\.org\.cn|usembassy\.gov|usconsulate\.gov|usmission\.gov).*?)">([\w \'\.,]*)<\/a>'
+    rstring = r'<\/tr><tr><td><a href="(https?:\/\/(((..|china))\.(usembassy-china\.org\.cn|usembassy\.gov|usconsulate\.gov|usmission\.gov)).*?)">([\w \'\.,]*)<\/a>'
     for match in re.findall(rstring, contents):
         # ('https://mx.usembassy.gov/covid-19-information/', 'mx', 'mx', 'usembassy.gov', 'Mexico')
-        url, country_abbreviation, _, domain, country_name = match
-        filename = 'data/country_' + country_name.lower().replace('.', '').replace('/', '').replace(' ', '_') + '.html'
+        url, domain, country_abbreviation, _, _, country_name = match
+        filename = 'data/country_' + normalize_country_filename(country_name) + '.html'
 
         try:
             if has_file_expired(filename):
                 logger.debug(f'Country {country_name!r} file {filename!r} has expired, pulling new data...')
                 with open(filename, 'w') as f:
-                    f.write(requests.get(url).text)
+                    extra_urls = ['covid-19-information/', 'u-s-citizen-services/covid-19-information/']
+                    data = requests.get(url).text
+                    for _u in extra_urls:
+                        u = ('https://%s/' % domain) + _u
+                        if u.rstrip('/') != url.rstrip('/'):
+                            data += requests.get(u).text
+                    f.write(data)
 
         except:
             logger.exception(f'Failed to pull info for country {country_name!r} to file {filename!r}. Match: {match!r}')
@@ -137,13 +161,13 @@ def _preformat_answer(answer):
     return preformatted_answer
 
 
-def _parse_answer(_answer):
-    answer = re.sub(r'\s+', ' ', re.sub(r'[^\w ]', '', strip_tags(_answer))).strip().lower()
+def _parse_answer(_answer, url=None):
+    answer = re.sub(r'\s+', ' ', re.sub(r'[^\w \n]', '', strip_tags(_answer))).strip().lower()
 
     if not answer:
         return ANSWER_UNKNOWN
 
-    yes_sometimess = ['not for tourism', 'entry is restricted', 'no tourism', 'subject to strict limitations', 'purpose of travel', 'only under', 'very limited cases', 'special permission', 'but only if they meet other certain criteria', 'limited circumstances']
+    yes_sometimess = ['not for tourism', 'entry is restricted', 'no tourism', 'subject to strict limitations', 'purpose of travel', 'only under', 'very limited cases', 'special permission', 'but only if they meet other certain criteria', 'limited circumstances', 'restricting non-essential travel']
     yes_always = ['valid visa', 'approved evisa', 'with additional documentation', 'subject to restrictions']
 
     no_rarelys = ['limited circumstances', 'few exceptions', 'limited exceptions', 'for exceptions', 'special circumstances']
@@ -188,17 +212,20 @@ def _parse_answer(_answer):
         if d in answer:
             return ANSWER_YES
 
-    logger.warning('Unknown response: _answer=%r, answer=%r' % (_answer, answer))
+    logger.warning('Unknown response: _answer=%r, answer=%r, url=%r' % (_answer, answer, url))
     return ANSWER_UNKNOWN
 
 
 TEST_REQUIRED_UNKNOWN, TEST_REQUIRED_YES, TEST_REQUIRED_NO = range(3)
 
-def _parse_covid_test_answer(_answer):
+def _parse_covid_test_answer(question, _answer, url=None):
     answer = re.sub(r'\s+', ' ', re.sub(r'[^\w ]', '', strip_tags(_answer))).strip().lower()
     
     if not answer:
         return TEST_REQUIRED_UNKNOWN
+
+    # HACK: [Sun, 07 Mar 2021 14:53:03] WARNING [main.py._parse_covid_test_answer:236] Unknown response for test_required: _answer=' to Mexico.</li>', answer='to mexico', url='https://mx.usembassy.gov/u-s-citizen-services/covid-19-information/'
+    answer += re.sub(r'\s+', ' ', re.sub(r'[^\w ]', '', strip_tags(question))).strip().lower()
 
     yess = ['yes', 'must produce a negative', 'provide a negative', 'requires a negative', 'must undergo', 'requirements for a valid test', 'is required']
     nos = ['no', 'not required']
@@ -216,13 +243,13 @@ def _parse_covid_test_answer(_answer):
         if d in answer:
             return TEST_REQUIRED_UNKNOWN
 
-    logger.warning('Unknown response for test_required: _answer=%r, answer=%r' % (_answer, answer))
+    logger.warning('Unknown response for test_required: question=%r, _answer=%r, answer=%r, url=%r' % (question, _answer, answer, url))
     return TEST_REQUIRED_UNKNOWN
 
 
 QUARANTINE_REQUIRED_UNKNOWN, QUARANTINE_REQUIRED_YES, QUARANTINE_REQUIRED_NO = range(3)
 
-def _parse_quarantine_required_answer(_answer):
+def _parse_quarantine_required_answer(_answer, url=None):
     answer = re.sub(r'\s+', ' ', re.sub(r'[^\w ]', '', strip_tags(_answer))).strip().lower()
     
     if not answer:
@@ -244,33 +271,43 @@ def _parse_quarantine_required_answer(_answer):
         if d in answer:
             return QUARANTINE_REQUIRED_UNKNOWN
 
-    logger.warning('Unknown response for quarantine_required: _answer=%r, answer=%r' % (_answer, answer))
+    logger.warning('Unknown response for quarantine_required: _answer=%r, answer=%r, url=%r' % (_answer, answer, url))
     return QUARANTINE_REQUIRED_UNKNOWN
 
 
-def parse_country(country):
-    with open(country['filename'], 'r') as f:
-        contents = f.read()
-    
+def parse_country_contents(country, contents, ignore_urls=None, temp_url=None):
+    cur_url = temp_url or country['url']
+    if not ignore_urls:
+        ignore_urls = [country['url']]
+
     # parse the "open" question
 
-    rstring_us_citizens = r'((Are )?U\.S\. citizens permitted to enter\??)(.*$.*$)'
-    matches = re.findall(rstring_us_citizens, contents, re.IGNORECASE | re.MULTILINE)
+    retval = True
+    rstring_us_citizens = r'((Are )?U\.S\. citizens permitted to enter\??)(.*?<\/li>)'
+    matches = re.findall(rstring_us_citizens, contents, re.IGNORECASE | re.MULTILINE | re.DOTALL)
     if not matches:
         rstring_latest = r'(latest|updated).*info.*"(http.*?' + re.escape(country['domain']) + '.*?)"'
-        for _, url2 in re.findall(rstring_latest, contents, re.IGNORECASE | re.MULTILINE):
-            # print(url2)
-            # TODO: parse additional info URLs
-            pass
-
-        country['classification'] = ANSWER_UNKNOWN
-        country['preformatted'] = []
+        matches = re.findall(rstring_latest, contents, re.IGNORECASE | re.MULTILINE)
+        all_urls = [x[1] for x in matches]
+        _found = False
+        for _, url2 in matches:
+            if url2 not in ignore_urls:
+                contents = fetch_url(country['name'], url2)
+                if parse_country_contents(country, contents, ignore_urls=ignore_urls+all_urls, temp_url=url2):
+                    _found = True
+                    break
+        
+        if not _found:
+            # didn't find additional URLs or anything interesting :(
+            country['classification'] = ANSWER_UNKNOWN
+            country['preformatted'] = []
+            retval = False
     else:
         statuses = set()
         preformatted = set()
 
         for _, question, answer in matches:
-            statuses.add(_parse_answer(answer))
+            statuses.add(_parse_answer(answer, url=cur_url))
             preformatted.add(_preformat_answer(answer))
 
         if len(statuses) >= 2:
@@ -293,14 +330,30 @@ def parse_country(country):
         country['classification'] = statuses
         country['preformatted'] = list(preformatted)
 
+    # parse the updated date
+
+    update_date = None
+    matches = set(re.findall(r'<meta property="article:modified_time" content="(.*?)" \/>', contents, re.IGNORECASE))
+    for match in matches:
+        try:
+            # fetch most recent date
+            ts = int(datetime.datetime.fromisoformat(match).timestamp())
+            if (not update_date) or ts > update_date:
+                update_date = ts
+        except:
+            logger.exception('Failed to parse match %r for country %r at URL %r' % (match, country['name'], country['url']))
+
+    country['last_changed'] = update_date
+
     # parse the "test required" question
 
-    rstring_covid_test = r'(negative COVID.*?required for entry\??)(.*$.*$)'
-    matches = re.findall(rstring_covid_test, contents, re.IGNORECASE | re.MULTILINE)
+    rstring_covid_test = r'(Is a negative COVID-19 test.*?required for entry\??)(.*?<\/li>)'
+    matches = re.findall(rstring_covid_test, contents, re.IGNORECASE | re.MULTILINE | re.DOTALL)
     answers = set()
     
     for question, answer in matches:
-        answers.add(_parse_covid_test_answer(answer))
+        a = _parse_covid_test_answer(question, answer, url=cur_url)
+        answers.add(a)
 
     if TEST_REQUIRED_YES in answers:
         country['test_required'] = TEST_REQUIRED_YES
@@ -311,12 +364,12 @@ def parse_country(country):
 
     # parse the "quarantine required" column
 
-    rstring_quarantine_required = r'(citizens required to quarantine\??)(.*$.*$)'
-    matches = re.findall(rstring_quarantine_required, contents, re.IGNORECASE | re.MULTILINE)
+    rstring_quarantine_required = r'(citizens required to quarantine\??)(.*?<\/li>)'
+    matches = re.findall(rstring_quarantine_required, contents, re.IGNORECASE | re.MULTILINE | re.DOTALL)
     answers = set()
 
     for question, answer in matches:
-        answers.add(_parse_quarantine_required_answer(answer))
+        answers.add(_parse_quarantine_required_answer(answer, url=cur_url))
 
     if QUARANTINE_REQUIRED_YES in answers:
         country['quarantine_required'] = QUARANTINE_REQUIRED_YES
@@ -325,13 +378,16 @@ def parse_country(country):
     else:
         country['quarantine_required'] = QUARANTINE_REQUIRED_UNKNOWN
 
-    return country
+    return retval
 
 
 def get_statuses():
     directory = parse_directory()
     for _, country in directory.items():
-        parse_country(country)
+        with open(country['filename'], 'r') as f:
+            contents = f.read()
+    
+        parse_country_contents(country, contents)
         del country['filename']
         del country['domain']
     return list(directory.values())
