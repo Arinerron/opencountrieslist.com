@@ -5,6 +5,8 @@
 const isMobile = /mobi/i.test(navigator.userAgent);
 
 
+var ready_start_time = (+ new Date())
+
 function _text_el(data) {
     const td = document.createElement('td')
     td.innerText = data
@@ -172,6 +174,7 @@ function _quarantine_required_el(country) {
 
 
 function createMap(data) {
+    var start_time = (+ new Date())
     var texts = {
         0: 'Unknown status',
         1: 'See URL for more info',
@@ -226,6 +229,8 @@ function createMap(data) {
             }
         });
         chart.draw(data, options)
+        var end_time = (+ new Date())
+        console.log('Map load time:', (end_time - start_time)/1000)
     }
 
 }
@@ -286,15 +291,19 @@ function addTooltips() {
 
 
 $(document).ready(function() {
+    var ready_end_time = (+ new Date())
+    console.log('Document ready time:', (ready_end_time-ready_start_time)/1000)
     fetch('/data.json').then(response => response.json()).then(data => {
-        console.debug('Received data:', data)
+        var data_end_time = (+ new Date())
+        console.log('Data ready time:', (data_end_time-ready_end_time)/1000)
+
         setTimeout(createMap.bind(null, data), 0)
 
+        var start_time = (+ new Date())
         var last_update = (new Date(data['time'] * 1e3)).toLocaleString()
         document.getElementById('last-update').innerText = last_update
 
         var countriesTableBody = document.getElementById('countries-tbody')
-        countriesTableBody.style.visibility = 'hidden'
         var abbrevs = {
             'CHINA': 'CN'
         }
@@ -312,7 +321,10 @@ $(document).ready(function() {
             for (var col of cols) { tr.append(col) }
             countriesTableBody.append(tr)
         }
+        var end_time = (+ new Date())
+        console.log('Data parsing time:', (end_time-start_time)/1000)
 
+        var start_time = (+ new Date())
         $('#countries').DataTable({
             order: [[ 2, 'desc' ], [ 3, 'desc' ], [ 4, 'desc' ], [ 5, 'asc' ]],
             stateSave: true,
@@ -341,14 +353,16 @@ $(document).ready(function() {
             }],
             fixedHeader: true
         })
+        $('#countries').removeClass('hidden'); // XXX: messes with sizing
+        var end_time = (+ new Date())
+        console.log('Table render time:', (end_time - start_time)/1000)
 
         addTooltips();
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
-        countriesTableBody.style.visibility = 'visible'
 
-        setTimeout(function() { document.getElementById('loading').style.display = 'none'; }, 1000)
+        setTimeout(function() { document.getElementById('loading').style.display = 'none'; }, 0)
     }).catch((error) => {
         console.error('Error:', error)
         alert(`Failed to fetch data: ${error}`)

@@ -214,3 +214,7 @@ tr > td:nth-of-type(3) {
 body {
     scrollbar-width: 1.4em;
 }
+
+.hidden {
+    display: none;
+}
