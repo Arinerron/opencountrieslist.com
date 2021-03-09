@@ -1,0 +1,5 @@
+Contact: mailto:contact@opencountrieslist.com
+Expires: Wed, 1 Jan 2025 00:00 -0800
+Preferred-Languages: en
+Canonical: https://opencountrieslist.com/security.txt
+
