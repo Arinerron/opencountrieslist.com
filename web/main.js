@@ -2,6 +2,8 @@
  * i use arch btw
  */
 
+const isMobile = /mobi/i.test(navigator.userAgent);
+
 
 function _text_el(data) {
     const td = document.createElement('td')
@@ -36,11 +38,15 @@ function _last_changed_el(country) {
 
 function _country_name_el(country) {
     const td = document.createElement('td')
-    const a = document.createElement('a')
-    a.rel = 'noopener noreferer'
-    a.href = country['url']
-    a.innerText = country['name']
-    td.append(a)
+    if (!isMobile) {
+        const a = document.createElement('a')
+        a.rel = 'noopener noreferer'
+        a.href = country['url']
+        a.innerText = country['name']
+        td.append(a)
+    } else {
+        td.innerText = country['name']
+    }
     return td
 }
 
@@ -212,9 +218,11 @@ function createMap(data) {
         google.visualization.events.addListener(chart, 'select', function() {
             var s = chart.getSelection();
             if (s.length) {
-                var country = rows[s[0]['row']]
-                console.log('Clicked country', country)
-                window.open(country['url'], '_blank')
+                if (!isMobile) {
+                    var country = rows[s[0]['row']]
+                    console.log('Clicked country', country)
+                    window.open(country['url'], '_blank')
+                }
             }
         });
         chart.draw(data, options)
@@ -307,6 +315,7 @@ $(document).ready(function() {
             order: [[ 2, 'desc' ], [ 3, 'desc' ], [ 4, 'desc' ], [ 5, 'asc' ]],
             stateSave: true,
             paging: false,
+            responsive: true,
             columnDefs: [{
                 targets: 0,
                 className: 'text-center',
@@ -327,7 +336,8 @@ $(document).ready(function() {
             }, {
                 targets: 5,
                 width: '11%'
-            }]
+            }],
+            fixedHeader: true
         })
 
         addTooltips();

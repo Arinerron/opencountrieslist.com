@@ -24,6 +24,9 @@
         
         <link rel="stylesheet" href="lib/bootstrap.min.css">
         <link rel="stylesheet" href="lib/jquery.dataTables.min.css">
+        <link rel="stylesheet" href="lib/responsive.dataTables.min.css">
+        <link rel="stylesheet" href="lib/fixedHeader.dataTables.min.css">
+        <link rel="stylesheet" href="lib/dataTables.uikit.css">
 
         <link href="styles.css" rel="stylesheet">
 
@@ -150,7 +153,7 @@
                 <div class="col-12">
                     <h2 id="open-map">Map of Open Countries</h2>
                 </div>
-                <div id="map-container" class="col-12" style="width: 100%; height: 60vh;"></div>
+                <div id="map-container" class="col-12" style="width: 100%; min-height: 400px;"></div>
             </div>
 
             <div class="row pb-3">
@@ -158,19 +161,21 @@
                     <h2 id="open-list">List of Open Countries</h2>
                 </div>
                 <div class="col-12">
-                    <table id="countries" class="display" style="width: 100%;">
+                    <div class="table-responsive">
+                    <table id="countries" class="display table-striped table-hover dt-responsive nowrap">
                         <thead>
                             <tr>
-                                <th>&nbsp;</th>
-                                <th id="column-country-name" data-html="true">Country Name</th>
-                                <th id="column-open-to-travel" data-html="true">Open to Travel</th>
-                                <th id="column-quarantine" data-html="true">Quarantine</th>
-                                <th id="column-covid-test" data-html="true">COVID Test</th>
-                                <th id="column-last-changed" data-html="true">Last Changed</th>
+                                <th class="not-mobile">&nbsp;</th>
+                                <th id="column-country-name" data-html="true" class="min-mobile">Country Name</th>
+                                <th id="column-open-to-travel" data-html="true" class="min-mobile">Open to Travel</th>
+                                <th id="column-quarantine" data-html="true" class="min-mobile">Quarantine</th>
+                                <th id="column-covid-test" data-html="true" class="min-mobile">COVID Test</th>
+                                <th id="column-last-changed" data-html="true" class="not-mobile">Last Changed</th>
                             </tr>
                         </thead>
                         <tbody id="countries-tbody"></tbody>
                     </table>
+                    </div>
                 </div>
             </div>
             <div class="row pt-3 pb-3 mb-3">
@@ -187,6 +192,9 @@
         <script src="lib/bootstrap.min.js"></script>
         <script src="lib/jquery.dataTables.min.js"></script>
         <script src="lib/dataTables.pageResize.min.js"></script>
+        <script src="lib/dataTables.responsive.min.js"></script>
+        <script src="lib/dataTables.fixedHeader.min.js"></script>
+
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
         <script src="main.js"></script>
