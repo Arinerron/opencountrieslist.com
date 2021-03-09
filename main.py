@@ -515,8 +515,16 @@ def get_statuses():
 
 if __name__ == '__main__':
     OUTPUT_FILENAME = 'web/data.json'
+    statuses = get_statuses()
     with open(OUTPUT_FILENAME, 'w') as f:
         f.write(json.dumps({
             'time': int(time.time()),
-            'countries': get_statuses()
+            '_note': [
+                'Hey developer / hacker! You\'re more than welcome to use the data I collected and publish here. I just have a couple requests.',
+                'The first is that you don\'t fetch the JSON blob more frequently than like an hour or so. The data only updates every 6 hours anyway, and if you fetch frequently, it\'ll put extra strain I don\'t need on my server.',
+                'Also, please contact me at contact@opencountrieslist.com and let me know of your intent to use the data (and purpose, if you are okay with disclosing that). This allows me, among other things, to have contact information to notify you of future potentially-breaking changes to the API. I\'ll even throw in some instructions on how to access and interpret this data! Don\'t worry, I\'m not gonna tell you "no". Otherwise I\'d bother to make this data harder to access :P I intentionally made this a simple, human-readable JSON blob FOR YOU!',
+                'Also btw if you\'re using this endpoint to write your own update bot instead of paying for mine, that\'s totally fine. The reason I even bother charging is because I\'m a student and I\'ve always wanted to try making an online store. I care less about the money, although, of course, I can use extra cash for the infra and for school.',
+                'Feel free to shoot me an email if you want to chat about this project or other things, and I\'ll give you discord/telegram contact info.'
+            ],
+            'countries': statuses
         }, indent=2))

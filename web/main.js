@@ -176,10 +176,14 @@ function createMap(data) {
     }
 
     var cat_agg = [['Country', 'Classification', {role: 'tooltip', p:{html:true}}]]
+    var rows = []
     for (var country of data['countries']) {
+        if (country['classification'] == 0) continue;
         cat_agg.push([
             country['abbreviation'], country['classification'], '<p style="white-space: nowrap"><b>' + country['name'] + ':</b> ' + texts[country['classification']] + '</span>'
         ])
+        // keep same index
+        rows.push(country)
     }
 
     google.charts.load('current', {
@@ -190,7 +194,6 @@ function createMap(data) {
 
     function drawRegionsMap() {
         var data = google.visualization.arrayToDataTable(cat_agg)
-        console.log(data)
 
         var options = {
             colorAxis: {minValue: 0, maxValue: 5, colors: ['#9EA7AD', '#2DCCFF', '#FF3838', '#FF3838', '#FCE83A', '#56F000']},
@@ -206,8 +209,69 @@ function createMap(data) {
         }
 
         var chart = new google.visualization.GeoChart(document.getElementById('map-container'))
+        google.visualization.events.addListener(chart, 'select', function() {
+            var s = chart.getSelection();
+            if (s.length) {
+                var country = rows[s[0]['row']]
+                console.log('Clicked country', country)
+                window.open(country['url'], '_blank')
+            }
+        });
         chart.draw(data, options)
     }
+
+}
+
+
+function setTooltip(el_id, msg) {
+    var el = document.getElementById(el_id)
+    el.setAttribute('data-toggle', 'tooltip')
+    el.setAttribute('data-placement', 'top')
+    // data-html set from HTML
+    el.setAttribute('title', msg)
+}
+
+
+function addTooltips() {
+    var msgs = {
+        'Open to Travel': {
+            'Open': 'The country allows United States citizens to fly in, regardless of purpose (e.g. tourism)',
+            'Hard to Enter': 'The country only allows United States citizens to enter for specific purposes (e.g. returning to home, international school, etc)',
+            'Very Hard to Enter': 'Only specific people are granted access to the country (e.g. diplomats, corporate leaders)',
+            'Closed': 'No entry to the country is permitted by the country\'s government',
+            'See URL': 'Certain portions of the country appear to be open while others aren\'t. Check the URL for more info'
+        },
+        'Quarantine': {
+            'Not Required': 'The country will not require you to quarantine on arrival',
+            'Required': 'The country has specified that you will be required to quarantine on arrival. Check the URL to see if there are any relevant exceptions (e.g. through a COVID-19 test)'
+        },
+        'COVID Test': {
+            'Not Required': 'The country has not specified any COVID-19 testing requirements',
+            'Required': 'The country has specified COVID-19 testing requirements to enter the country. See the URL for more info'
+        },
+        'Last Changed': 'This column contains the date of the most recent change to the country\'s travel policy'
+    }
+
+    for (const [key, val] of Object.entries(msgs)) {
+        var tooltipId = 'column-' + key.toLowerCase().replaceAll(' ', '-')
+        var inner = document.createElement('ul')
+        inner.className = 'text-left'
+        if ((typeof val) === 'string') {
+            setTooltip(tooltipId, val)
+        } else {
+            for (const [inner_key, inner_val] of Object.entries(val)) {
+                var li = document.createElement('li')
+                var b = document.createElement('b')
+                b.innerText = inner_key + ':'
+                li.append(b)
+                li.append(' ' + inner_val)
+                inner.append(li)
+            }
+            setTooltip(tooltipId, inner.outerHTML)
+        }
+    }
+
+    // TODO: auto update the accordion too
 }
 
 
@@ -266,6 +330,7 @@ $(document).ready(function() {
             }]
         })
 
+        addTooltips();
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
