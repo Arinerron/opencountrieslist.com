@@ -260,22 +260,24 @@ function addTooltips() {
         'Last Changed': 'This column contains the date of the most recent change to the country\'s travel policy'
     }
 
-    for (const [key, val] of Object.entries(msgs)) {
-        var tooltipId = 'column-' + key.toLowerCase().replaceAll(' ', '-')
-        var inner = document.createElement('ul')
-        inner.className = 'text-left'
-        if ((typeof val) === 'string') {
-            setTooltip(tooltipId, val)
-        } else {
-            for (const [inner_key, inner_val] of Object.entries(val)) {
-                var li = document.createElement('li')
-                var b = document.createElement('b')
-                b.innerText = inner_key + ':'
-                li.append(b)
-                li.append(' ' + inner_val)
-                inner.append(li)
+    if (!isMobile) {
+        for (const [key, val] of Object.entries(msgs)) {
+            var tooltipId = 'column-' + key.toLowerCase().replaceAll(' ', '-')
+            var inner = document.createElement('ul')
+            inner.className = 'text-left'
+            if ((typeof val) === 'string') {
+                setTooltip(tooltipId, val)
+            } else {
+                for (const [inner_key, inner_val] of Object.entries(val)) {
+                    var li = document.createElement('li')
+                    var b = document.createElement('b')
+                    b.innerText = inner_key + ':'
+                    li.append(b)
+                    li.append(' ' + inner_val)
+                    inner.append(li)
+                }
+                setTooltip(tooltipId, inner.outerHTML)
             }
-            setTooltip(tooltipId, inner.outerHTML)
         }
     }
 
