@@ -347,7 +347,7 @@ $(document).ready(function() {
             countriesTableBody.append(tr)
         }
         var end_time = (+ new Date())
-        console.log('Data parsing time:', (end_time-start_time)/1000)
+        console.log('Data to elements time:', (end_time-start_time)/1000)
 
         var start_time = (+ new Date())
         $('#countries').DataTable({
