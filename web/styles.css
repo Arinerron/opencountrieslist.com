@@ -171,23 +171,19 @@ tr > td:nth-of-type(3) {
     font-family: monospace;
 }
 
-/* TODO: remove this */
-.highcharts-credits {
-    display: none;
-}
-
 .tooltip-inner {
     max-width: 40em !important;
 }
 
 [data-toggle="collapse"]:after {
     display: inline-block;
-    font: normal normal normal 14px/1 FontAwesome;
+    font: normal normal normal 1.5em arial;
+    font-weight: bolder !important;
     font-size: inherit;
     text-rendering: auto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  content: "\f054";
+  content: "➤";
   transform: rotate(90deg) ;
   transition: all linear 0.25s;
   }   
