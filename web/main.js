@@ -97,7 +97,7 @@ function _classification_el(country) {
     const span = document.createElement('span')
     span.innerText = texts[classification]
     td.append(span)
-    if (country['preformatted']) {
+    if (country['preformatted'] && country['classification']) {
         var msg = '<b>Are U.S. citizens permitted to enter the country?</b><br>' + country['preformatted'].join('<br>')
         td.setAttribute('data-toggle', 'tooltip')
         td.setAttribute('data-placement', 'right')
