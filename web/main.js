@@ -97,8 +97,18 @@ function _classification_el(country) {
     const span = document.createElement('span')
     span.innerText = texts[classification]
     td.append(span)
-    if (country['preformatted'] && country['classification']) {
-        var msg = '<b>Are U.S. citizens permitted to enter the country?</b><br>' + country['preformatted'].join('<br>')
+    if (country['preformatted'] && country['classification'] && country['classification'] !== 1) {
+        var colors = {
+            0: ['', ''],
+            1: ['', ''],
+            2: ['color-red', 'color-red-light'],
+            3: ['color-red', 'color-red-light'],
+            4: ['color-orange', 'color-orange-light'],
+            5: ['color-green', 'color-green-light']
+        }
+
+
+        var msg = '<div class="' + colors[country['classification']][1] + '"><b class="' + colors[country['classification']][0] + '">Are U.S. citizens permitted to enter the country?</b><br>' + country['preformatted'].join('<br>') + '</div>'
         td.setAttribute('data-toggle', 'tooltip')
         td.setAttribute('data-placement', 'right')
         td.setAttribute('data-html', 'true')
@@ -272,19 +282,19 @@ function setTooltip(el_id, msg) {
 function addTooltips() {
     var msgs = {
         'Open to Travel': {
-            'Open': 'The country allows United States citizens to fly in, regardless of purpose (e.g. tourism)',
-            'Partially Open': 'The country only allows United States citizens to enter for specific purposes (e.g. returning to home, international school, etc)',
-            'Mostly Closed': 'Only specific people are granted access to the country (e.g. diplomats, corporate leaders)',
-            'Closed': 'No entry to the country is permitted by the country\'s government',
-            'See URL': 'Certain portions of the country appear to be open while others aren\'t. Check the URL for more info'
+            'Open': ['color-green', 'The country allows United States citizens to fly in, regardless of purpose (e.g. tourism)'],
+            'Partially Open': ['color-orange', 'The country only allows United States citizens to enter for specific purposes (e.g. returning to home, international school, etc)'],
+            'Mostly Closed': ['color-red', 'Only specific people are granted access to the country (e.g. diplomats, corporate leaders)'],
+            'Closed': ['color-red', 'No entry to the country is permitted by the country\'s government'],
+            'See URL': ['', 'Certain portions of the country appear to be open while others aren\'t. Check the URL for more info']
         },
         'Quarantine': {
-            'Not Required': 'The country will not require you to quarantine on arrival',
-            'Required': 'The country has specified that you will be required to quarantine on arrival. Check the URL to see if there are any relevant exceptions (e.g. through a COVID-19 test)'
+            'Not Required': ['color-green', 'The country will not require you to quarantine on arrival'],
+            'Required': ['color-red', 'The country has specified that you will be required to quarantine on arrival. Check the URL to see if there are any relevant exceptions (e.g. through a COVID-19 test)']
         },
         'COVID Test': {
-            'Not Required': 'The country has not specified any COVID-19 testing requirements',
-            'Required': 'The country has specified COVID-19 testing requirements to enter the country. See the URL for more info'
+            'Not Required': ['color-green', 'The country has not specified any COVID-19 testing requirements'],
+            'Required': ['color-red', 'The country has specified COVID-19 testing requirements to enter the country. See the URL for more info']
         },
         'Last Changed': 'This column contains the date of the most recent change to the country\'s travel policy'
     }
@@ -300,9 +310,10 @@ function addTooltips() {
                 for (const [inner_key, inner_val] of Object.entries(val)) {
                     var li = document.createElement('li')
                     var b = document.createElement('b')
+                    b.className = inner_val[0]
                     b.innerText = inner_key + ':'
                     li.append(b)
-                    li.append(' ' + inner_val)
+                    li.append(' ' + inner_val[1])
                     inner.append(li)
                 }
                 setTooltip(tooltipId, inner.outerHTML)
