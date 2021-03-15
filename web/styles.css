@@ -229,3 +229,7 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td.dtr-control:before, table.dataT
 ul > li.google-visualization-tooltip-item:nth-of-type(1) {
     display: none;
 }
+
+div.dataTables_wrapper div.dataTables_filter input {
+    margin-left: 0em;
+}
