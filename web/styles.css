@@ -136,6 +136,13 @@ body {
     color: #dc3545 !important;
 }
 
+.comment {
+    /*padding-left: 1em;
+    display: block;*/
+    color: gray;
+    font-style: italic;
+}
+
 /*tr > td:nth-of-type(6) {
     max-width: 100px;
     overflow: hidden;
