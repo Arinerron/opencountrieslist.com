@@ -364,7 +364,7 @@ $(document).ready(function() {
 
         addTooltips();
         $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
+            $('[data-toggle="tooltip"]').tooltip({ boundary: 'window' }) // #5
         })
 
         setTimeout(function() { document.getElementById('loading').style.display = 'none'; }, 0)
