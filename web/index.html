@@ -72,20 +72,20 @@
                                 <ul>
                                     <li>Open to Travel</li>
                                     <ul>
-                                        <li><b>Open:</b> The country allows United States citizens to fly in, regardless of purpose (e.g. tourism)</li>
-                                        <li><b>Partially Open:</b> The country only allows United States citizens to enter for specific purposes (e.g. returning to home, international school, etc)</li>
-                                        <li><b>Mostly Closed:</b> Only specific people are granted access to the country (e.g. diplomats, corporate leaders)</li>
-                                        <li><b>Closed:</b> No entry to the country is permitted by the country's government</li>
+                                        <li><b class="color-green">Open:</b> The country allows United States citizens to fly in, regardless of purpose (e.g. tourism).</li>
+                                        <li><b class="color-orange">Partially Open:</b> The country only allows United States citizens to enter for specific purposes (e.g. returning to home, international school, etc).</li>
+                                        <li><b class="color-red">Mostly Closed:</b> Only specific people are granted access to the country (e.g. diplomats, corporate leaders).</li>
+                                        <li><b class="color-red">Closed:</b> No entry to the country is permitted by the country's government.</li>
                                     </ul>
                                     <li>Quarantine</li>
                                     <ul>
-                                        <li><b>Not Required:</b> The country will not require you to quarantine on arrival</li>
-                                        <li><b>Required:</b> The country has specified that you will be required to quarantine on arrival. Check the URL to see if there are any relevant exceptions (e.g. through a COVID-19 test)</li>
+                                        <li><b class="color-green">Not Required:</b> The country will not require you to quarantine on arrival.</li>
+                                        <li><b class="color-red">Required:</b> The country has specified that you will be required to quarantine on arrival. Check the URL to see if there are any relevant exceptions (e.g. through a COVID-19 test).<br><i><u>Note:</u> Although not required, a quarantine is recommended. When in public, always wear a mask to avoid unnecessary exposure. Do not travel if you know you are sick.</i></li>
                                     </ul>
                                     <li>COVID Test</li>
                                     <ul>
-                                        <li><b>Not Required:</b> The country has not specified any COVID-19 testing requirements</li>
-                                        <li><b>Required:</b> The country has specified COVID-19 testing requirements to enter the country. See the URL for more info</li>
+                                        <li><b class="color-green">Not Required:</b> The country has not specified any COVID-19 testing requirements.</li>
+                                        <li><b class="color-red">Required:</b> The country has specified COVID-19 testing requirements to enter the country. See the URL for more info.<br><i><u>Note:</u> Although not required, a COVID-19 test is still recommended prior to departure. Do not travel if you know you are sick.</i></li>
                                     </ul>
                                 </ul>
                                 <p>Our data is sourced from international United States embassies. Unfortunately, there is no standard for how the information we use is given to us. Although we do our best to interpret the information, sometimes, our automated system is sometimes unable to interpret the non-standard information the embassies provide. To avoid displaying false information, we instead display "UNKNOWN" for the data we are uncertain about. We instead provide the URL for you to manually check or verify any entry.</p>
@@ -133,12 +133,25 @@
 
             <div class="row pt-3 pb-3">
                 <div class="col-12">
-                    <h2 id="data">Open Countries Map & Table</h2>
+                    <h2 id="data">Map of Countries Open to the United States</h2>
+                    <p>The following map answers the question: how difficult is it for U.S. citizens to enter each country?</p>
+                    <ul>
+                        <li><b class="color-green">Green:</b> The country is open and there are no quarantine requirements.</li>
+                        <li><b class="color-orange">Orange:</b> The country is open, but there are mandatory quarantine requirements.</li>
+                        <li><b class="color-red">Red:</b> It would be very difficult or impossible to enter the country.</li>
+                    </ul>
                 </div>
             </div>
 
             <div class="row pt-3 pb-3">
                 <div id="map-container" class="col-12" style="width: 100%; min-height: 400px;"></div>
+            </div>
+
+            <div class="row pt-3 pb-3">
+                <div class="col-12">
+                    <h2 id="data">List of All Countries</h2>
+                    <p>The following table describes the entry requirements&mdash;whether or not it is open, and whether a quarantine or COVID-19 test is required for entry&mdash;for each country.</p>
+                </div>
             </div>
 
             <div class="row pb-3">

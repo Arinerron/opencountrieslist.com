@@ -110,6 +110,32 @@ body {
     background-color: #c1f0cc !important;
 }
 
+/**********************************/
+
+.color-green-light {
+    color: #c1f0cc !important;
+}
+
+.color-orange-light {
+    color: #ffecb3 !important;
+}
+
+.color-red-light {
+    color: #f4bec3 !important;
+}
+
+.color-green {
+    color: #28a745 !important;
+}
+
+.color-orange {
+    color: #ffc107 !important;
+}
+
+.color-red {
+    color: #dc3545 !important;
+}
+
 /*tr > td:nth-of-type(6) {
     max-width: 100px;
     overflow: hidden;
