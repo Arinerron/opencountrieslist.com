@@ -408,7 +408,7 @@ $(document).ready(function() {
         const EXPIRE_TIME = (60 * 30) * 1e3
         if (localStorage && localStorage.getItem('data_date') && Number.parseInt(localStorage.getItem('data_date')) + EXPIRE_TIME > (+ new Date())) {
             console.log('Data is not expired. Using cached data...')
-            _data = JSON.parse(localStorage.getItem('data'));
+            _data = JSON.parse(localStorage.getItem('data'))
         }
     }
     if (!_data) {
@@ -425,5 +425,38 @@ $(document).ready(function() {
     } else {
         handleData(_data);
     }
+
+    $('.toast').toast({delay: 5000});
+    $('.copy-link').tooltip({
+        trigger: 'manual'
+    });
 })
+
+
+// https://stackoverflow.com/a/33928558/3678023
+function copyToClipboard(text) {
+    if (window.clipboardData && window.clipboardData.setData) {
+        return window.clipboardData.setData("Text", text)
+    } else if (document.queryCommandSupported && document.queryCommandSupported("copy")) {
+        var textarea = document.createElement("textarea")
+        textarea.textContent = text
+        textarea.style.position = "fixed" // Prevent scrolling to bottom of page in Microsoft Edge.
+        document.body.appendChild(textarea)
+        textarea.select()
+        try {
+            return document.execCommand("copy") // Security exception may be thrown by some browsers.
+        } catch (ex) {
+            console.warn("Copy to clipboard failed.", ex)
+            return false
+        } finally {
+            document.body.removeChild(textarea)
+        }
+    }
+}
+
+function copyLink(linkId) {
+    copyToClipboard(location.href.split('#', 1)[0] + `#${linkId}`)
+    $('#link-' + linkId).tooltip('show')
+    setTimeout(function() { $('#link-' + linkId).tooltip('hide'); }, 1000)
+}
 

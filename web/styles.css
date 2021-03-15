@@ -262,3 +262,24 @@ ul > li.google-visualization-tooltip-item:nth-of-type(1) {
 div.dataTables_wrapper div.dataTables_filter input {
     margin-left: 0em;
 }
+
+.copy-link:hover {
+    color: gray;
+}
+
+#data-table,
+#data-map {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.copy-link {
+    color: gray;
+    vertical-align: middle;
+    padding-left: 0.4em;
+    opacity: 0.8;
+}
+
+.toast{
+  opacity: 1;
+}
