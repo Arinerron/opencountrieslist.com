@@ -3,6 +3,11 @@
  */
 
 const isMobile = /mobi/i.test(navigator.userAgent);
+const isDev = location.host === 'localhost:1337'
+
+if (isDev) {
+    console.log('Running in dev mode.')
+}
 
 
 var ready_start_time = (+ new Date())
@@ -293,7 +298,8 @@ function addTooltips() {
 $(document).ready(function() {
     var ready_end_time = (+ new Date())
     console.log('Document ready time:', (ready_end_time-ready_start_time)/1000)
-    fetch('/data.json').then(response => response.json()).then(data => {
+
+    function handleData(data) {
         var data_end_time = (+ new Date())
         console.log('Data ready time:', (data_end_time-ready_end_time)/1000)
 
@@ -376,9 +382,29 @@ $(document).ready(function() {
                 });
             }
         }, 500);
-    }).catch((error) => {
-        console.error('Error:', error)
-        alert(`Error while loading page. Please report this to support@opencountrieslist.com: ${error}`)
-    })
+    }
+
+    var _data = null;
+    if (!isDev) {
+        const EXPIRE_TIME = (60 * 30) * 1e3
+        if (localStorage && localStorage.getItem('data_date') && Number.parseInt(localStorage.getItem('data_date')) + EXPIRE_TIME > (+ new Date())) {
+            console.log('Data is not expired. Using cached data...')
+            _data = JSON.parse(localStorage.getItem('data'));
+        }
+    }
+    if (!_data) {
+        fetch('/data.json').then(response => response.json()).then((data) => {
+            handleData(data);
+            if (localStorage) {
+                localStorage.setItem('data', JSON.stringify(data))
+                localStorage.setItem('data_date', ''+(data['time'] * 1e3))
+            }
+        }).catch((error) => {
+            console.error('Error:', error)
+            alert(`Error while loading page. Please report this to support@opencountrieslist.com: ${error}`)
+        })
+    } else {
+        handleData(_data);
+    }
 })
 
