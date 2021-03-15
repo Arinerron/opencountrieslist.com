@@ -183,18 +183,37 @@ function createMap(data) {
     var texts = {
         0: '(unknown status)',
         1: '(see URL for more info)',
-        2: 'Closed',
-        3: 'Mostly Closed',
-        4: 'Partially Open',
-        5: 'Open for Travel'
+        2: 'closed',
+        3: 'mostly closed',
+        4: 'partially open',
+        5: 'open for travel'
     }
+    var agg = {};
+    agg[[5, 2]] = 5
+    agg[[5, 1]] = 4
+    agg[[4, 1]] = 3
+    agg[[4, 2]] = 3
+    agg[[4, 0]] = 3
+    agg[[3, 1]] = 2
+    agg[[3, 2]] = 2
+    agg[[3, 0]] = 2
+    agg[[2, 1]] = 2
+    agg[[2, 2]] = 2
+    agg[[2, 0]] = 2
 
-    var cat_agg = [['Country', 'Classification', {role: 'tooltip', p:{html:true}}]]
+    var cat_agg = [['Country', 'Classification', {role: 'tooltip', p: {html: true}}]]
     var rows = []
     for (var country of data['countries']) {
         if (country['classification'] == 0) continue;
+        var color = agg[[country['classification'], country['quarantine_required']]] || 0
+
+        var msg = '<p style="white-space: nowrap"><b>' + country['name'] + ':</b> ' + texts[country['classification']] 
+        if (country['quarantine_required'] === 1)
+            msg += ' (quarantine required)'
+        msg += '</p>'
+
         cat_agg.push([
-            country['abbreviation'], country['classification'], '<p style="white-space: nowrap"><b>' + country['name'] + ':</b> ' + texts[country['classification']] + '</span>'
+            country['abbreviation'], color, msg
         ])
         // keep same index
         rows.push(country)
