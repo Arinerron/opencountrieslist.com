@@ -91,24 +91,23 @@ body {
 }
 
 .status-readmore {
-    background-color: #93FFFF !important;
 }
 
 .status-no {
-    background-color: #FF9E9E !important;
+    background-color: #f4bec3 !important;
 }
 
 .status-rarely {
-    background-color: #FF9E9E !important;
+    background-color: #f4bec3 !important;
     /* background-color: #FFFF68 !important; */
 }
 
 .status-sometimes {
-    background-color: #FFFFA0 !important;
+    background-color: #ffecb3 !important;
 }
 
 .status-yes {
-    background-color: #BCFF66 !important;
+    background-color: #c1f0cc !important;
 }
 
 /*tr > td:nth-of-type(6) {
@@ -225,4 +224,8 @@ table.dataTable.dtr-inline.collapsed>tbody>tr>td.dtr-control:before, table.dataT
 
 .dataTables_filter {
    float: left !important;
+}
+
+ul > li.google-visualization-tooltip-item:nth-of-type(1) {
+    display: none;
 }

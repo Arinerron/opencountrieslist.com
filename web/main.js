@@ -205,7 +205,7 @@ function createMap(data) {
         var data = google.visualization.arrayToDataTable(cat_agg)
 
         var options = {
-            colorAxis: {minValue: 0, maxValue: 5, colors: ['#9EA7AD', '#2DCCFF', '#FF3838', '#FF3838', '#FCE83A', '#56F000']},
+            colorAxis: {minValue: 0, maxValue: 5, colors: ['#9EA7AD', '#2DCCFF', '#dc3545', '#dc3545', '#ffc107', '#28a745']},
             backgroundColor: '#f5f5f5',
             datalessRegionColor: '#9EA7AD',
             defaultColor: '#9EA7AD',
