@@ -208,7 +208,7 @@ function createMap(data) {
         var color = agg[[country['classification'], country['quarantine_required']]] || 0
 
         var msg = '<p style="white-space: nowrap"><b>' + country['name'] + ':</b> ' + texts[country['classification']] 
-        if (country['quarantine_required'] === 1)
+        if ((country['classification'] === 5 || country['classification'] === 4) && country['quarantine_required'] === 1)
             msg += ' (quarantine required)'
         msg += '</p>'
 
