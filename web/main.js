@@ -68,8 +68,8 @@ function _classification_el(country) {
     var texts = {
         0: 'UNKNOWN',
         1: 'SEE URL',
-        2: 'NOT OPEN',
-        3: 'VERY HARD TO ENTER',
+        2: 'CLOSED',
+        3: 'MOSTLY CLOSED',
         4: 'HARD TO ENTER',
         5: 'OPEN'
     }
@@ -178,8 +178,8 @@ function createMap(data) {
     var texts = {
         0: 'Unknown status',
         1: 'See URL for more info',
-        2: 'Not open to travelers',
-        3: 'Very hard to enter',
+        2: 'Closed',
+        3: 'Mostly closed',
         4: 'Hard to enter',
         5: 'Open to travelers'
     }
@@ -344,19 +344,20 @@ $(document).ready(function() {
                 width: '25%'
             }, {
                 targets: 2,
-                width: '18%'
+                width: '10%'
             }, {
                 targets: 3,
-                width: '12%'
+                width: '10%'
             }, {
                 targets: 4,
-                width: '12%'
+                width: '10%'
             }, {
                 targets: 5,
                 width: '11%'
             }],
             fixedHeader: true
         })
+        Array.from(document.querySelectorAll('td.text-center.dtr-control')).map((x) => { x.tabIndex = -1 })
         $('#countries').removeClass('hidden'); // XXX: messes with sizing
         var end_time = (+ new Date())
         console.log('Table render time:', (end_time - start_time)/1000)

@@ -61,7 +61,7 @@
                         <div class="card">
                             <div class="card-header" id="headingOne">
                                 <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    <button id="reading-columns" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                                         How do I read the columns of table of open countries?
                                     </button>
                                 </h5>
@@ -89,6 +89,23 @@
                                         <li><b>Required:</b> The country has specified COVID-19 testing requirements to enter the country. See the URL for more info</li>
                                     </ul>
                                 </ul>
+                                <p>Our data is sourced from international United States embassies. Unfortunately, there is no standard for how the information we use is given to us. Although we do our best to interpret the information, sometimes, our automated system is sometimes unable to interpret the non-standard information the embassies provide. To avoid displaying false information, we instead display "UNKNOWN" for the data we are uncertain about. We instead provide the URL for you to manually check or verify any entry.</p>
+                                <p>Note that "SEE URL" is similar to "UNKNOWN" in that it requires you to check the URL. When we display "SEE URL", our systems detected multiple different answers to the same question ("is the country open?"). This is usually due to the fact that some countries pass the responsibility of determining whether or not to stay open to states, territories, or even cities.</p>
+                            </div>
+                        </div>
+
+                        <div class="card">
+                            <div class="card-header" id="headingFour">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        I found a country missing from the list! Why is it missing?
+                                    </button>
+                                </h5>
+                            </div>
+                        </div>
+                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+                            <div class="card-body">
+                                <p>Although we have data for the <i>vast majority</i> of countries, there are a few that the United States has not established an embassy in. For that reason, we do not have a data source to collect information for every country from.</p>
                             </div>
                         </div>
 
@@ -104,38 +121,6 @@
                         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
                             <div class="card-body">
                                 <p>We're sorry we didn't provide you with high quality data! We'd love to get a chance to improve our algorithms or at least not display false information. Shoot us an email at <a href="mailto:contact@opencountrieslist.com">contact@opencountrieslist.com</a> and we will do our best to improve.</p>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header" id="headingThree">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Why are some of the columns in the table "UNKNOWN"?
-                                    </button>
-                                </h5>
-                            </div>
-                        </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                            <div class="card-body">
-                                <p>Our data is sourced from international United States embassies. Unfortunately, there is no standard for how the information we use is given to us. Although we do our best to interpret the information, sometimes, our automated system is unable to interpret the non-standard information the embassies provide.</p>
-                                <p>To avoid displaying false information, we instead display "UNKNOWN" for the data we are uncertain about. We provide the URL for you to manually check or verify any entry.</p>
-                                <p>Note that "SEE URL" is similar to "UNKNOWN" in that it requires you to check the URL. When we display "SEE URL", our systems detected multiple different answers to the same question ("is the country open?"). This is usually due to the fact that some countries pass the responsibility of determining whether or not to stay open to states, territories, or even cities.</p>
-                            </div>
-                        </div>
-
-                        <div class="card">
-                            <div class="card-header" id="headingFour">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                        Why is country xyz missing?
-                                    </button>
-                                </h5>
-                            </div>
-                        </div>
-                        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                            <div class="card-body">
-                                <p>Although we have data for the <i>vast majority</i> of countries, there are a few that the United States has not established an embassy in. For that reason, we do not have a data source to collect information for every country from.</p>
                             </div>
                         </div>
                     </div>

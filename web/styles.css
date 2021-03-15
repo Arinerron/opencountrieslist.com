@@ -88,7 +88,6 @@ body {
 /********************************/
 
 .status-unknown {
-    background-color: #D1DAE0 !important;
 }
 
 .status-readmore {
@@ -217,4 +216,13 @@ body {
 
 .hidden {
     display: none;
+}
+
+table.dataTable.dtr-inline.collapsed>tbody>tr>td.dtr-control:before, table.dataTable.dtr-inline.collapsed>tbody>tr>th.dtr-control:before {
+    display: none;
+    content: unset;
+}
+
+.dataTables_filter {
+   float: left !important;
 }
