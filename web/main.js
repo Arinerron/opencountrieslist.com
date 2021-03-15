@@ -367,10 +367,17 @@ $(document).ready(function() {
         })
 
         setTimeout(function() { document.getElementById('loading').style.display = 'none'; }, 0)
-
+        setTimeout(function(){
+            if(top !== self){
+                gtag('event', 'embed', {
+                  event_category: 'embed',
+                  event_label: top.location.href,
+                });
+            }
+        }, 500);
     }).catch((error) => {
         console.error('Error:', error)
-        alert(`Failed to fetch data: ${error}`)
+        alert(`Error while loading page. Please report this to support@opencountrieslist.com: ${error}`)
     })
 })
 
