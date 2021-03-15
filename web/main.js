@@ -330,6 +330,10 @@ $(document).ready(function() {
             stateSave: true,
             paging: false,
             responsive: true,
+            language: {
+                search: '',
+                searchPlaceholder: 'Search for a country...'
+            },
             columnDefs: [{
                 targets: 0,
                 className: 'text-center',
@@ -363,6 +367,7 @@ $(document).ready(function() {
         })
 
         setTimeout(function() { document.getElementById('loading').style.display = 'none'; }, 0)
+
     }).catch((error) => {
         console.error('Error:', error)
         alert(`Failed to fetch data: ${error}`)
