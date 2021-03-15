@@ -70,7 +70,7 @@ function _classification_el(country) {
         1: 'SEE URL',
         2: 'CLOSED',
         3: 'MOSTLY CLOSED',
-        4: 'HARD TO ENTER',
+        4: 'PARTIALLY OPEN',
         5: 'OPEN'
     }
 
@@ -176,12 +176,12 @@ function _quarantine_required_el(country) {
 function createMap(data) {
     var start_time = (+ new Date())
     var texts = {
-        0: 'Unknown status',
-        1: 'See URL for more info',
+        0: '(unknown status)',
+        1: '(see URL for more info)',
         2: 'Closed',
-        3: 'Mostly closed',
-        4: 'Hard to enter',
-        5: 'Open to travelers'
+        3: 'Mostly Closed',
+        4: 'Partially Open',
+        5: 'Open for Travel'
     }
 
     var cat_agg = [['Country', 'Classification', {role: 'tooltip', p:{html:true}}]]
@@ -249,8 +249,8 @@ function addTooltips() {
     var msgs = {
         'Open to Travel': {
             'Open': 'The country allows United States citizens to fly in, regardless of purpose (e.g. tourism)',
-            'Hard to Enter': 'The country only allows United States citizens to enter for specific purposes (e.g. returning to home, international school, etc)',
-            'Very Hard to Enter': 'Only specific people are granted access to the country (e.g. diplomats, corporate leaders)',
+            'Partially Open': 'The country only allows United States citizens to enter for specific purposes (e.g. returning to home, international school, etc)',
+            'Mostly Closed': 'Only specific people are granted access to the country (e.g. diplomats, corporate leaders)',
             'Closed': 'No entry to the country is permitted by the country\'s government',
             'See URL': 'Certain portions of the country appear to be open while others aren\'t. Check the URL for more info'
         },
