@@ -218,6 +218,8 @@ def _preformat_answer(answer):
     if len(preformatted_answer) >= 2:
         preformatted_answer = preformatted_answer[0].upper() + preformatted_answer[1:]
 
+    preformatted_answer = re.sub('(Yes|No) ([A-Z])', r'\1. \2', preformatted_answer)
+
     return preformatted_answer
 
 
@@ -227,14 +229,15 @@ def _parse_answer(_answer, url=None):
     if not answer:
         return ANSWER_UNKNOWN
 
-    yes_sometimess = ['not for tourism', 'entry is restricted', 'no tourism', 'subject to strict limitations', 'purpose of travel', 'only under', 'very limited cases', 'special permission', 'but only if they meet other certain criteria', 'limited circumstances', 'restricting non-essential travel']
+    yes_sometimess = ['not for tourism', 'entry is restricted', 'no tourism', 'subject to strict limitations', 'purpose of travel', 'only under', 'very limited cases', 'special permission', 'but only if they meet other certain criteria', 'limited circumstances', 'restricting non-essential travel', 'only essential travel is permitted']
     yes_always = ['valid visa', 'approved evisa', 'with additional documentation', 'subject to restrictions']
 
-    no_rarelys = ['limited circumstances', 'few exceptions', 'limited exceptions', 'for exceptions', 'special circumstances']
+    no_rarelys = ['limited circumstances', 'few exceptions', 'limited exceptions', 'for exceptions', 'special circumstances', 'but currently most us citizens can', 'other us visitors are not allowed']
     no_always = ['nonessential travel', 'residency']
 
+    others_override = {'other us visitors are not allowed': ANSWER_RARELY}
     others_no = ['us visitors are not allowed']
-    others_rarely = ['very limited']
+    others_rarely = ['very limited', 'other us visitors are not allowed', 'but currently most us citizens can']
     others_sometimes = ['it depends']
     others_always = ['in most cases', 'the countryyes', 'some us citizens are permitted to enter']
 
@@ -259,6 +262,9 @@ def _parse_answer(_answer, url=None):
 
         return ANSWER_NO
     
+    for d, k in others_override.items():
+        if d in answer:
+            return k
     for d in others_no:
         if d in answer:
             return ANSWER_NO
@@ -287,7 +293,7 @@ def _parse_covid_test_answer(question, _answer, url=None):
     # HACK: [Sun, 07 Mar 2021 14:53:03] WARNING [main.py._parse_covid_test_answer:236] Unknown response for test_required: _answer=' to Mexico.</li>', answer='to mexico', url='https://mx.usembassy.gov/u-s-citizen-services/covid-19-information/'
     answer += re.sub(r'\s+', ' ', re.sub(r'[^\w ]', '', strip_tags(question))).strip().lower()
 
-    yess = ['yes', 'must produce a negative', 'provide a negative', 'requires a negative', 'must undergo', 'requirements for a valid test', 'is required']
+    yess = ['yes', 'must produce a negative', 'provide a negative', 'requires a negative', 'must undergo', 'requirements for a valid test', 'is required', 'will be tested for covid-19 at their own expense']
     nos = ['no', 'not required']
     unknowns = ['remain closed']
 
@@ -316,7 +322,7 @@ def _parse_quarantine_required_answer(_answer, url=None):
         return QUARANTINE_REQUIRED_UNKNOWN
 
     yess = ['yes', 'subject to quarantine', 'the following restrictions apply']
-    nos = ['no', 'not required to quarantine']
+    nos = ['no', 'not required to quarantine', 'travelers with elevated temperatures']
     unknowns = ['possibly']
 
     for d in yess:
@@ -339,6 +345,8 @@ def parse_country_contents(country, contents, ignore_urls=None, temp_url=None):
     cur_url = temp_url or country['url']
     if not ignore_urls:
         ignore_urls = [country['url']]
+
+    contents = contents.replace('&nbsp;', ' ').replace('\xa0', ' ').strip()
 
     # parse the "open" question
 
@@ -367,6 +375,7 @@ def parse_country_contents(country, contents, ignore_urls=None, temp_url=None):
         preformatted = set()
 
         for _, question, answer in matches:
+            answer = answer.split('Is a negative COVID-19 test (PCR and/or serology)', 1)[0]
             statuses.add(_parse_answer(answer, url=cur_url))
             preformatted.add(_preformat_answer(answer))
 
@@ -424,8 +433,8 @@ def parse_country_contents(country, contents, ignore_urls=None, temp_url=None):
 
     # parse the "quarantine required" column
 
-    rstring_quarantine_required = r'(citizens required to quarantine\??)(.*?<\/li>)'
-    matches = re.findall(rstring_quarantine_required, contents, re.IGNORECASE | re.MULTILINE | re.DOTALL)
+    rstring_quarantine_required = r'(citizens +required +to +quarantine\??)(.*?<\/li>)'
+    matches = re.findall(rstring_quarantine_required, contents.replace('<span data-contrast="none">', '').replace('</span>', '').replace('&nbsp;', ' '), re.IGNORECASE | re.MULTILINE | re.DOTALL)
     answers = set()
 
     for question, answer in matches:
