@@ -199,8 +199,6 @@ def _preformat_answer(country, answer):
     if not re.match(r'.*[\.!\?]$', preformatted_answer):
         preformatted_answer += '.'
 
-    preformatted_answer = re.sub(r'(https[^\s]*?)(\."|"| |\. )', 'the website', preformatted_answer, flags=re.IGNORECASE) 
-
     # >>> ' '.join(x.capitalize() for x in re.findall(r' ?(.*?[\.!\?])', 'This is an example sentence. Are you able to read this? what about now. ok boomer! ok.sadf.'))
     # 'This is an example sentence. Are you able to read this? What about now. Ok boomer! Ok. Sadf.'
 
@@ -220,6 +218,7 @@ def _preformat_answer(country, answer):
     if len(preformatted_answer) >= 2:
         preformatted_answer = preformatted_answer[0].upper() + preformatted_answer[1:]
 
+    preformatted_answer = re.sub(r'(https[^\s]*?)(\.\W|"| |\.\s|\.$)', r'the website\2', preformatted_answer, flags=re.IGNORECASE) 
     preformatted_answer = re.sub(r'^' + re.escape(country['name']) + r' (Yes|No)', r'\1', preformatted_answer, flags=re.IGNORECASE)
     preformatted_answer = re.sub(r'(Yes|No) ([\(A-Z])', r'\1. \2', preformatted_answer, flags=re.IGNORECASE)
 
