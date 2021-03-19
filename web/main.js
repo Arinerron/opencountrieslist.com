@@ -124,6 +124,8 @@ function _test_required_el(country) {
     // set to N/A if they don't allow entry (covid tests are meaningless)
     if (country['classification'] === 2) {
         test_required = -1
+    } else if (country['classification'] === 0) {
+        test_required = 0
     }
 
     var classNames = {
@@ -159,6 +161,8 @@ function _quarantine_required_el(country) {
     // set to N/A if they don't allow entry (covid tests are meaningless)
     if (country['classification'] === 2) {
         quarantine_required = -1
+    } else if (country['classification'] === 0) {
+        quarantine_required = 0
     }
 
     var classNames = {
