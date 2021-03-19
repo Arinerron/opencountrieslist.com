@@ -545,4 +545,4 @@ if __name__ == '__main__':
                 'Feel free to shoot me an email if you want to chat about this project or other things, and I\'ll give you discord/telegram contact info.'
             ],
             'countries': statuses
-        }))
+        }, separators=(',', ':')))
