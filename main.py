@@ -346,7 +346,14 @@ def parse_country_contents(country, contents, ignore_urls=None, temp_url=None):
     if not ignore_urls:
         ignore_urls = [country['url']]
 
-    contents = contents.replace('&nbsp;', ' ').replace('\xa0', ' ').strip()
+    contents = contents.replace('&nbsp;', ' ').replace('&amp;', '&').replace('\xa0', ' ').strip()
+    
+    # deal with accordions
+
+    _sep = r'<h4 class="panel-title">\s*(?:' + '|'.join([re.escape(country['name']), re.escape(country['name'].replace('and', '&'))]) + r')\s*<\/h4>'
+    matches = re.compile(_sep, re.IGNORECASE | re.MULTILINE | re.DOTALL).split(contents, 1)
+    if len(matches) != 1:
+        contents = matches[1].split(' class="panel panel-default">', 1)[0]
 
     # parse the "open" question
 
