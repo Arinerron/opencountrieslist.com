@@ -192,7 +192,7 @@ ANSWERS = {
 }
 
 
-def _preformat_answer(answer):
+def _preformat_answer(country, answer):
     preformatted_answer = re.sub(r'\s+', ' ', strip_tags(answer).strip())
     preformatted_answer = re.sub(r'[^\(\) \w,\.]', '', preformatted_answer)
 
@@ -218,8 +218,8 @@ def _preformat_answer(answer):
     if len(preformatted_answer) >= 2:
         preformatted_answer = preformatted_answer[0].upper() + preformatted_answer[1:]
 
-    preformatted_answer = re.sub('(Yes|No) ([A-Z])', r'\1. \2', preformatted_answer)
-    preformatted_answer = re.sub('Covid19', 'COVID-19', preformatted_answer, re.IGNORECASE)
+    preformatted_answer = re.sub('(?:' + re.escape(country['name']) + ' )(Yes|No) ([A-Z])', r'\1. \2', preformatted_answer)
+    preformatted_answer = re.sub('Covid19', 'COVID-19', preformatted_answer, flags=re.IGNORECASE)
 
     return preformatted_answer
 
@@ -385,7 +385,7 @@ def parse_country_contents(country, contents, ignore_urls=None, temp_url=None):
         for _, question, answer in matches:
             answer = answer.split('Is a negative COVID-19 test (PCR and/or serology)', 1)[0]
             statuses.add(_parse_answer(answer, url=cur_url))
-            preformatted.add(_preformat_answer(answer))
+            preformatted.add(_preformat_answer(country, answer))
 
         if len(statuses) >= 2:
             if len(statuses) >= 3:
