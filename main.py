@@ -219,6 +219,7 @@ def _preformat_answer(answer):
         preformatted_answer = preformatted_answer[0].upper() + preformatted_answer[1:]
 
     preformatted_answer = re.sub('(Yes|No) ([A-Z])', r'\1. \2', preformatted_answer)
+    preformatted_answer = re.sub('Covid19', 'COVID-19', preformatted_answer, re.IGNORECASE)
 
     return preformatted_answer
 
