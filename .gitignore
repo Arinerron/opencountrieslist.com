@@ -3,4 +3,5 @@ data.json
 countryscrape.log
 __pycache__
 web/data.json
+web/sitemap.xml
 history.db

@@ -15,6 +15,8 @@ import hashlib
 import datetime
 import sqlite3
 
+import sitemap
+
 logger = logging.getLogger('')
 logger.setLevel(logging.DEBUG)
 fh = logging.FileHandler('countryscrape.log')
@@ -550,3 +552,5 @@ if __name__ == '__main__':
             ],
             'countries': statuses
         }, separators=(',', ':')))
+
+    sitemap.generate_sitemap()
