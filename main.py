@@ -220,8 +220,8 @@ def _preformat_answer(country, answer):
     if len(preformatted_answer) >= 2:
         preformatted_answer = preformatted_answer[0].upper() + preformatted_answer[1:]
 
-    preformatted_answer = re.sub(r'(?:' + re.escape(country['name']) + ' )(Yes|No) ([A-Z])', r'\1. \2', preformatted_answer, flags=re.IGNORECASE)
-    preformatted_answer = re.sub(r'(Yes|No) ([A-Z])', r'\1. \2', preformatted_answer, flags=re.IGNORECASE)
+    preformatted_answer = re.sub(r'^' + re.escape(country['name']) + r' (Yes|No)', r'\1', preformatted_answer, flags=re.IGNORECASE)
+    preformatted_answer = re.sub(r'(Yes|No) ([\(A-Z])', r'\1. \2', preformatted_answer, flags=re.IGNORECASE)
 
     preformatted_answer = re.sub(r'Covid19', 'COVID-19', preformatted_answer, flags=re.IGNORECASE)
 
