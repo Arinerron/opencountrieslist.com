@@ -6,9 +6,8 @@ import datetime
 
 def generate_sitemap():
     root = ET.Element('urlset')
-    root.attrib['xmlns:xsi'] = 'http://www.w3.org/2001/XMLSchema-instance'
-    root.attrib['xsi:schemaLocation'] = 'http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd'
     root.attrib['xmlns'] = 'http://www.sitemaps.org/schemas/sitemap/0.9'
+    root.attrib['xmlns:xhtml'] = 'http://www.w3.org/1999/xhtml'
 
     dt = datetime.datetime.now().strftime('%Y-%m-%d')
     doc = ET.SubElement(root, 'url')
@@ -17,8 +16,8 @@ def generate_sitemap():
     ET.SubElement(doc, "changefreq").text = 'hourly'
     ET.SubElement(doc, 'priority').text = '1.0'
 
-    tree = ET.ElementTree(root)
-    tree.write('web/sitemap.xml', encoding='utf-8', xml_declaration=True)
+    with open('web/sitemap.xml', 'wb') as f:
+        f.write(ET.tostring(root, encoding='utf-8', xml_declaration=True))
 
 
 if __name__ == '__main__':
