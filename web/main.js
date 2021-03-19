@@ -195,7 +195,7 @@ function createMap(data) {
         1: '(see URL for more info)',
         2: 'closed',
         3: 'mostly closed',
-        4: 'partially open',
+        4: 'difficult to enter, but partially open',
         5: 'open for travel'
     }
     var agg = {};
