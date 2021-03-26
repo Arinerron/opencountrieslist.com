@@ -15,6 +15,9 @@ import hashlib
 import datetime
 import sqlite3
 
+import yaml
+import tweepy
+
 import sitemap
 
 logger = logging.getLogger('')
@@ -26,6 +29,20 @@ fh.setFormatter(formatter)
 sh.setFormatter(colorlog.ColoredFormatter('%(log_color)s[%(asctime)s] %(levelname)s [%(filename)s.%(funcName)s:%(lineno)d] %(message)s', datefmt='%a, %d %b %Y %H:%M:%S'))
 logger.addHandler(fh)
 logger.addHandler(sh)
+
+######
+
+TWEET_MSGS = list()
+CONFIG = dict()
+
+try:
+    with open('config.yml', 'r') as f:
+        CONFIG = yaml.safe_load(f.read())
+except FileNotFoundError:
+    pass
+
+######
+
 
 COUNTRIES = {k.lower(): v.upper() for k, v in {'Afghanistan': 'AF', 'Albania': 'AL', 'Algeria': 'DZ', 'American Samoa': 'AS', 'Andorra': 'AD', 'Angola': 'AO', 'Anguilla': 'AI', 'Antarctica': 'AQ', 'Antigua and Barbuda': 'AG', 'Argentina': 'AR', 'Armenia': 'AM', 'Aruba': 'AW', 'Australia': 'AU', 'Austria': 'AT', 'Azerbaijan': 'AZ', 'Bahamas': 'BS', 'Bahrain': 'BH', 'Bangladesh': 'BD', 'Barbados': 'BB', 'Belarus': 'BY', 'Belgium': 'BE', 'Belize': 'BZ', 'Benin': 'BJ', 'Bermuda': 'BM', 'Bhutan': 'BT', 'Bolivia, Plurinational State of': 'BO', 'Bolivia': 'BO', 'Bosnia and Herzegovina': 'BA', 'Botswana': 'BW', 'Bouvet Island': 'BV', 'Brazil': 'BR', 'British Indian Ocean Territory': 'IO', 'Brunei Darussalam': 'BN', 'Brunei': 'BN', 'Bulgaria': 'BG', 'Burkina Faso': 'BF', 'Burundi': 'BI', 'Cambodia': 'KH', 'Cameroon': 'CM', 'Canada': 'CA', 'Cape Verde': 'CV', 'Cayman Islands': 'KY', 'Central African Republic': 'CF', 'Chad': 'TD', 'Chile': 'CL', 'China': 'CN', 'Christmas Island': 'CX', 'Cocos (Keeling) Islands': 'CC', 'Colombia': 'CO', 'Comoros': 'KM', 'Congo': 'CG', 'Congo, the Democratic Republic of the': 'CD', 'Cook Islands': 'CK', 'Costa Rica': 'CR', "Côte d'Ivoire": 'CI', 'Ivory Coast': 'CI', 'Croatia': 'HR', 'Cuba': 'CU', 'Cyprus': 'CY', 'Czech Republic': 'CZ', 'Denmark': 'DK', 'Djibouti': 'DJ', 'Dominica': 'DM', 'Dominican Republic': 'DO', 'Ecuador': 'EC', 'Egypt': 'EG', 'El Salvador': 'SV', 'Equatorial Guinea': 'GQ', 'Eritrea': 'ER', 'Estonia': 'EE', 'Ethiopia': 'ET', 'Falkland Islands (Malvinas)': 'FK', 'Faroe Islands': 'FO', 'Fiji': 'FJ', 'Finland': 'FI', 'France': 'FR', 'French Guiana': 'GF', 'French Polynesia': 'PF', 'French Southern Territories': 'TF', 'Gabon': 'GA', 'Gambia': 'GM', 'Georgia': 'GE', 'Germany': 'DE', 'Ghana': 'GH', 'Gibraltar': 'GI', 'Greece': 'GR', 'Greenland': 'GL', 'Grenada': 'GD', 'Guadeloupe': 'GP', 'Guam': 'GU', 'Guatemala': 'GT', 'Guernsey': 'GG', 'Guinea': 'GN', 'Guinea-Bissau': 'GW', 'Guyana': 'GY', 'Haiti': 'HT', 'Heard Island and McDonald Islands': 'HM', 'Holy See (Vatican City State)': 'VA', 'Honduras': 'HN', 'Hong Kong': 'HK', 'Hungary': 'HU', 'Iceland': 'IS', 'India': 'IN', 'Indonesia': 'ID', 'Iran, Islamic Republic of': 'IR', 'Iraq': 'IQ', 'Ireland': 'IE', 'Isle of Man': 'IM', 'Israel': 'IL', 'Italy': 'IT', 'Jamaica': 'JM', 'Japan': 'JP', 'Jersey': 'JE', 'Jordan': 'JO', 'Kazakhstan': 'KZ', 'Kenya': 'KE', 'Kiribati': 'KI', "Korea, Democratic People's Republic of": 'KP', 'Korea, Republic of': 'KR', 'South Korea': 'KR', 'Kuwait': 'KW', 'Kyrgyzstan': 'KG', "Lao People's Democratic Republic": 'LA', 'Latvia': 'LV', 'Lebanon': 'LB', 'Lesotho': 'LS', 'Liberia': 'LR', 'Libyan Arab Jamahiriya': 'LY', 'Libya': 'LY', 'Liechtenstein': 'LI', 'Lithuania': 'LT', 'Luxembourg': 'LU', 'Macao': 'MO', 'Macedonia, the former Yugoslav Republic of': 'MK', 'Madagascar': 'MG', 'Malawi': 'MW', 'Malaysia': 'MY', 'Maldives': 'MV', 'Mali': 'ML', 'Malta': 'MT', 'Marshall Islands': 'MH', 'Martinique': 'MQ', 'Mauritania': 'MR', 'Mauritius': 'MU', 'Mayotte': 'YT', 'Mexico': 'MX', 'Micronesia, Federated States of': 'FM', 'Moldova, Republic of': 'MD', 'Monaco': 'MC', 'Mongolia': 'MN', 'Montenegro': 'ME', 'Montserrat': 'MS', 'Morocco': 'MA', 'Mozambique': 'MZ', 'Myanmar': 'MM', 'Burma': 'MM', 'Namibia': 'NA', 'Nauru': 'NR', 'Nepal': 'NP', 'Netherlands': 'NL', 'Netherlands Antilles': 'AN', 'New Caledonia': 'NC', 'New Zealand': 'NZ', 'Nicaragua': 'NI', 'Niger': 'NE', 'Nigeria': 'NG', 'Niue': 'NU', 'Norfolk Island': 'NF', 'Northern Mariana Islands': 'MP', 'Norway': 'NO', 'Oman': 'OM', 'Pakistan': 'PK', 'Palau': 'PW', 'Palestinian Territory, Occupied': 'PS', 'Panama': 'PA', 'Papua New Guinea': 'PG', 'Paraguay': 'PY', 'Peru': 'PE', 'Philippines': 'PH', 'Pitcairn': 'PN', 'Poland': 'PL', 'Portugal': 'PT', 'Puerto Rico': 'PR', 'Qatar': 'QA', 'Réunion': 'RE', 'Romania': 'RO', 'Russian Federation': 'RU', 'Russia': 'RU', 'Rwanda': 'RW', 'Saint Helena, Ascension and Tristan da Cunha': 'SH', 'Saint Kitts and Nevis': 'KN', 'Saint Lucia': 'LC', 'Saint Pierre and Miquelon': 'PM', 'Saint Vincent and the Grenadines': 'VC', 'Saint Vincent & the Grenadines': 'VC', 'St. Vincent and the Grenadines': 'VC', 'Samoa': 'WS', 'San Marino': 'SM', 'Sao Tome and Principe': 'ST', 'Saudi Arabia': 'SA', 'Senegal': 'SN', 'Serbia': 'RS', 'Seychelles': 'SC', 'Sierra Leone': 'SL', 'Singapore': 'SG', 'Slovakia': 'SK', 'Slovenia': 'SI', 'Solomon Islands': 'SB', 'Somalia': 'SO', 'South Africa': 'ZA', 'South Georgia and the South Sandwich Islands': 'GS', 'South Sudan': 'SS', 'Spain': 'ES', 'Sri Lanka': 'LK', 'Sudan': 'SD', 'Suriname': 'SR', 'Svalbard and Jan Mayen': 'SJ', 'Swaziland': 'SZ', 'Sweden': 'SE', 'Switzerland': 'CH', 'Syrian Arab Republic': 'SY', 'Taiwan, Province of China': 'TW', 'Taiwan': 'TW', 'Tajikistan': 'TJ', 'Tanzania, United Republic of': 'TZ', 'Thailand': 'TH', 'Timor-Leste': 'TL', 'Togo': 'TG', 'Tokelau': 'TK', 'Tonga': 'TO', 'Trinidad and Tobago': 'TT', 'Tunisia': 'TN', 'Turkey': 'TR', 'Turkmenistan': 'TM', 'Turks and Caicos Islands': 'TC', 'Tuvalu': 'TV', 'Uganda': 'UG', 'Ukraine': 'UA', 'United Arab Emirates': 'AE', 'United Kingdom': 'GB', 'United States': 'US', 'United States Minor Outlying Islands': 'UM', 'Uruguay': 'UY', 'Uzbekistan': 'UZ', 'Vanuatu': 'VU', 'Venezuela, Bolivarian Republic of': 'VE', 'Venezuela': 'VE', 'Viet Nam': 'VN', 'Vietnam': 'VN', 'Virgin Islands, British': 'VG', 'Virgin Islands, U.S.': 'VI', 'Wallis and Futuna': 'WF', 'Western Sahara': 'EH', 'Yemen': 'YE', 'Zambia': 'ZM', 'Zimbabwe': 'ZW'}.items()}
 
@@ -104,6 +121,99 @@ def strip_tags(html):
     s = MLStripper()
     s.feed(html)
     return s.get_data()
+
+
+CLASSIFICATION_SAME = (
+    (0, 1), # unknowns
+    (2, 3, 4), # not opens
+    (5,) # open
+)
+
+CLASSIFICATION_TEXT = {
+    2: 'is no longer open to U.S. travelers',
+    3: 'is no longer open to U.S. travelers',
+    4: 'is now only open to U.S. travelers who enter for specific purposes (school, etc)',
+    5: 'is now open to U.S. travelers'
+}
+
+QUARANTINE_REQUIRED_TEXT = {
+    1: 'now requires U.S. travelers to quarantine upon arrival',
+    2: 'no longer requires U.S. travelers to quarantine upon arrival'
+}
+
+TEST_REQUIRED_TEXT = {
+    1: 'now requires U.S. travelers to take a COVID-19 test for entry',
+    2: 'no longer requires U.S. travelers to take a COVID-19 test'
+}
+
+
+def generate_change_text(country, recent_row):
+    to_classification, to_test_required, to_quarantine_required = (
+        country['classification'],
+        country['test_required'],
+        country['quarantine_required']
+    )
+    from_classification, from_test_required, from_quarantine_required = recent_row[2:5]
+    msgs = list()
+
+    if from_classification != to_classification:
+        # check to make sure they aren't "identical classifications"
+        changed = False
+        for _test in CLASSIFICATION_SAME:
+            _results = [from_classification in _test, to_classification in _test]
+            if any(_results) and not all(_results):
+                changed = True
+                break
+
+        if changed and from_classification not in CLASSIFICATION_SAME[0] and to_classification not in CLASSIFICATION_SAME[0]:
+            msg = CLASSIFICATION_TEXT.get(to_classification)
+            if msg:
+                msgs.append(msg)
+    
+    if to_classification not in CLASSIFICATION_SAME[1]:
+        if from_quarantine_required != to_quarantine_required:
+            msg = QUARANTINE_REQUIRED_TEXT.get(to_quarantine_required)
+            if msg:
+                msgs.append(msg)
+
+        if from_test_required != to_test_required:
+            msg = TEST_REQUIRED_TEXT.get(to_test_required)
+            if msg:
+                msgs.append(msg)
+
+    outmsg = country['name'] + ' '
+    _msgs = list()
+    for msg in msgs:
+        if to_classification in CLASSIFICATION_SAME[2] and from_classification in CLASSIFICATION_SAME[1] and msg.startswith('now '):
+            msg = 'but ' + msg.lstrip('now ')
+        
+        _msgs.append(msg)
+
+    # XXX: utter hack
+    if len(_msgs) == 1:
+        outmsg += _msgs[0]
+    elif len(_msgs) == 3:
+        dat = '{}, {}, and {}.'.format(*_msgs)
+        # Ukraine is now open to U.S. travelers and no longer requires U.S. travelers to quarantine upon arrival, but requires U.S. travelers to take a COVID-19 test for entry
+        if ', and but ' in dat:
+            dat = '{} and {}, {}.'.format(*_msgs)
+        # Ukrainex is now open to U.S. travelers and but requires U.S. travelers to quarantine upon arrival, but requires U.S. travelers to take a COVID-19 test for entry
+        if ' and but ' in dat:
+            dat = '{}, {} and {}.'.format(*_msgs).replace(' and but ', ' and ')
+            if dat.count(' requires U.S. travelers to ') == 2:
+                dat = dat.replace('requires U.S. travelers to take a COVID-19 test', 'take a COVID-19 test')
+        outmsg += dat
+    elif len(_msgs) == 2:
+        outmsg += '{}, and {}.'.format(*_msgs)
+        outmsg = outmsg.replace('and but ', 'but ')
+    elif not _msgs:
+        outmsg = ''
+    else:
+        raise ValueError('Invalid number of msgs: ' + repr(_msgs))
+
+    outmsg = outmsg.replace('now requires U.S. travelers to quarantine upon arrival, and now requires U.S. travelers to take a COVID-19 test for entry', 'now requires U.S. travelers to quarantine upon arrival and take a COVID-19 test for entry')
+    
+    return outmsg or False
 
 
 def has_file_expired(filename, expire_after=60*60*5):
@@ -403,6 +513,8 @@ def parse_country_contents(country, contents, ignore_urls=None, temp_url=None):
                 statuses = ANSWER_NO
             elif statuses == {ANSWER_NO, ANSWER_YES}:
                 statuses = ANSWER_READ_MORE
+            elif statuses == {ANSWER_RARELY, ANSWER_YES}:
+                statuses = ANSWER_READ_MORE
             else:
                 logger.warning('Undefined STATUSes combo: %r' % statuses)
                 statuses = ANSWER_READ_MORE
@@ -464,6 +576,17 @@ def parse_country_contents(country, contents, ignore_urls=None, temp_url=None):
     return retval
 
 
+def handle_change(country, recent_row):
+    outmsg = generate_change_text(country, recent_row)
+    if outmsg:
+        # generate tweet
+        tweet_text = f'{outmsg}\nFor more info, see https://opencountrieslist.com/\n#{country["name"].replace(" ", "")} #travel #travelban #traveling'
+        if len(tweet_text) > 280:
+            logger.warning('Tweet %r is too long for the 280 length limit, skipping...' % tweet_text)
+        else:
+            TWEET_MSGS.append(tweet_text)
+
+
 def get_statuses():
     directory = parse_directory()
     for _, country in directory.items():
@@ -506,12 +629,14 @@ def get_statuses():
                     recent_row = row
 
         if (change_row and recent_row) and (change_row[2] == recent_row[2] and change_row[3] == recent_row[3] and change_row[4] == recent_row[4]):
+            print(country)
             print(change_row)
             print(recent_row)
             # a country just changed status!
             row_type, unixts, old_classification, old_test_required, old_quarantine_required = change_row
             logger.info('Change in status for country %r:\n* classification: %r -> %r\n* test_required: %r -> %r\n* quarantine_required: %r -> %r\n* unixts: %r -> %r' % (country['name'], old_classification, country['classification'], old_test_required, country['test_required'], old_quarantine_required, country['quarantine_required'], unixts, int(time.time())))
-            # TODO: make notification?
+
+            handle_change(country, recent_row)
 
         if change_row:
             row_type, unixts, old_classification, old_test_required, old_quarantine_required = change_row
@@ -554,3 +679,16 @@ if __name__ == '__main__':
         }, separators=(',', ':')))
 
     sitemap.generate_sitemap()
+
+    if TWEET_MSGS:
+        if not all([key in CONFIG for key in [
+            'api-key', 'api-secret', 'access-token', 'access-secret']]):
+            logger.warning('Skipping %d tweets as mandatory keys are missing from the config file.' % len(TWEET_MSGS))
+        else:
+            auth = tweepy.OAuthHandler(CONFIG['api-key'], CONFIG['api-secret'])
+            auth.set_access_token(CONFIG['access-token'], CONFIG['access-secret'])
+            api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
+            logger.info('Creating %d tweets...' % len(TWEET_MSGS))
+            for msg in TWEET_MSGS:
+                api.update_status(msg)
+    

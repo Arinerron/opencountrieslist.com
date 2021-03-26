@@ -5,3 +5,4 @@ __pycache__
 web/data.json
 web/sitemap.xml
 history.db
+config.yml
