@@ -234,10 +234,9 @@ function createMap(data) {
     }
 
     google.charts.load('current', {
-        'packages':['geochart'],
+        'packages': ['geochart', 'corechart'],
         'mapsApiKey': 'AIzaSyAKam0tf14-8M08QfWSWIZmM8W9gHFyT_o'
     })
-    google.charts.setOnLoadCallback(drawRegionsMap)
 
     function drawRegionsMap() {
         var data = google.visualization.arrayToDataTable(cat_agg)
@@ -271,6 +270,61 @@ function createMap(data) {
         console.log('Map load time:', (end_time - start_time)/1000)
     }
 
+    var changes_agg = [[
+        {type: 'date', label: 'Date'},
+        {label: 'Percent Closed'},
+        {label: 'Percent Requiring Quarantine'}
+    ]]
+    for (var [day, day_changes] of Object.entries(data['changes'])) {
+        const dc = day_changes['classification']
+        const open_countries = dc[5]
+        const closed_countries = dc[4] + dc[3] + dc[2]
+
+        const dqr = day_changes['quarantine_required']
+        const c_qr_yes = dqr[2]
+        const c_qr_no = dqr[1]
+        
+        changes_agg.push([
+            new Date(day + ' UTC'),
+            closed_countries / (open_countries + closed_countries), // skip unknowns
+            c_qr_no / (c_qr_no + c_qr_yes)
+        ])
+    }
+
+    function drawChangesMap() {
+        var data = google.visualization.arrayToDataTable(changes_agg);
+        var options = {
+            backgroundColor: '#f5f5f5',
+            series: {
+                0: {
+                    color: 'red'
+                },
+                1: {
+                    color: 'orange'
+                }
+            },
+            hAxis: {
+                title: 'Date',
+                format: 'M/d/yy',
+                gridlines: {count: 15},
+            },
+            vAxis: {
+                minValue: 0,
+                maxValue: 1,
+                format: '#%',
+                gridlines: {count: 10}
+            },
+            legend: 'none',
+        };
+
+        var chart = new google.visualization.AreaChart(document.getElementById('changes-container'));
+        chart.draw(data, options);
+    }
+
+    google.charts.setOnLoadCallback(function() {
+        drawRegionsMap();
+        drawChangesMap();
+    })
 }
 
 

@@ -268,7 +268,8 @@ div.dataTables_wrapper div.dataTables_filter input {
 }
 
 #data-table,
-#data-map {
+#data-map,
+#data-changes {
     display: inline-block;
     vertical-align: middle;
 }
@@ -280,6 +281,6 @@ div.dataTables_wrapper div.dataTables_filter input {
     opacity: 0.8;
 }
 
-.toast{
+.toast {
   opacity: 1;
 }

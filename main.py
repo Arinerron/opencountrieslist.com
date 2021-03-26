@@ -658,25 +658,80 @@ def get_statuses():
             country['test_required'],
             country['quarantine_required'], # don't trust this btw
             country['last_changed']))
+    
     commit()
 
     return list(directory.values())
 
 
+def get_changes():
+    changes = dict()
+
+    # classification
+    c = database()
+    c.execute(
+        r"SELECT day, classification, COUNT(*) FROM ("
+            r" SELECT strftime('%m/%d/%Y', datetime(unixts, 'unixepoch')) as day, classification, MAX(unixts) AS NUM_OPEN"
+            r" FROM countries"
+            r" GROUP BY name, day"
+        r") GROUP BY day, classification;"
+    )
+    agg_change = dict()
+    while True:
+        row = c.fetchone()
+        if not row:
+            break
+        day, classification, num_countries = row
+        if day not in agg_change:
+            agg_change[day] = {
+                'classification': dict(zip(range(5+1), [None]*6)),
+                'quarantine_required': dict(zip(range(2+1), [None]*3))
+            }
+        agg_change[day]['classification'][int(classification)] = int(num_countries)
+    c.close()
+
+    # quarantine_required
+    c = database()
+    c.execute(
+        r"SELECT day, quarantine_required, COUNT(*) FROM ("
+            r" SELECT strftime('%m/%d/%Y', datetime(unixts, 'unixepoch')) as day, quarantine_required, MAX(unixts) AS NUM_OPEN"
+            r" FROM countries"
+            r" WHERE classification=5"
+            r" GROUP BY name, day"
+        r") GROUP BY day, quarantine_required;"
+    )
+    while True:
+        row = c.fetchone()
+        if not row:
+            break
+        day, quarantine_required, num_countries = row
+        if day not in agg_change:
+            agg_change[day] = {
+                'classification': dict(zip(range(5+1), [None]*6)),
+                'quarantine_required': dict(zip(range(2+1), [None]*3))
+            }
+        agg_change[day]['quarantine_required'][int(quarantine_required)] = int(num_countries)
+    c.close()
+            
+    return agg_change
+
+
 if __name__ == '__main__':
     OUTPUT_FILENAME = 'web/data.json'
     statuses = get_statuses()
+    changes = get_changes()
     with open(OUTPUT_FILENAME, 'w') as f:
         f.write(json.dumps({
             'time': int(time.time()),
             '_note': [
                 'Hey developer / hacker! You\'re more than welcome to use the data I collected and publish here. I just have a couple requests.',
                 'The first is that you don\'t fetch the JSON blob more frequently than like an hour or so. The data only updates every 6 hours anyway, and if you fetch frequently, it\'ll put extra strain I don\'t need on my server.',
-                'Also, please contact me at the email address at the bottom of the home page and let me know of your intent to use the data (and purpose, if you are okay with disclosing that). This allows me, among other things, to have contact information to notify you of future potentially-breaking changes to the API. I\'ll even throw in some instructions on how to access and interpret this data! Don\'t worry, I\'m not gonna tell you "no". Otherwise I\'d bother to make this data harder to access :P I intentionally made this a simple, human-readable JSON blob FOR YOU!',
-                'Also btw if you\'re using this endpoint to write your own update bot instead of paying for mine, that\'s totally fine. The reason I even bother charging is because I\'m a student and I\'ve always wanted to try making an online store. I care less about the money, although, of course, I can use extra cash for the infra and for school.',
+                'Also, please contact me at the email address at the bottom of the home page and let me know of your intent to use the data (and purpose, if you are okay with disclosing that). This allows me, among other things, to have contact information to notify you of future potentially-breaking changes to the API. I\'ll even throw in some instructions on how to access and interpret this data! Don\'t worry, I\'m not gonna tell you "no". Otherwise I\'d bother to make this data harder to access :P I intentionally made this a simple JSON blob FOR YOU!',
+                #'Also btw if you\'re using this endpoint to write your own update bot instead of paying for mine, that\'s totally fine. The reason I even bother charging is because I\'m a student and I\'ve always wanted to try making an online store. I care less about the money, although, of course, I can use extra cash for the infra and for school.',
                 'Feel free to shoot me an email if you want to chat about this project or other things, and I\'ll give you discord/telegram contact info.'
             ],
-            'countries': statuses
+            'countries': statuses,
+            'changes': changes
         }, separators=(',', ':')))
 
     sitemap.generate_sitemap()
