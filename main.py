@@ -580,7 +580,8 @@ def handle_change(country, recent_row):
     outmsg = generate_change_text(country, recent_row)
     if outmsg:
         # generate tweet
-        tweet_text = f'{outmsg}\nFor more info, see https://opencountrieslist.com/\n#{country["name"].replace(" ", "")} #travel #travelban #traveling'
+        _tweet_outmsg = outmsg.strip().rstrip('.') + '.'
+        tweet_text = f'{_tweet_outmsg} For more info, see https://opencountrieslist.com/\n#{country["name"].replace(" ", "")} #traveling #travel #travelban'
         if len(tweet_text) > 280:
             logger.warning('Tweet %r is too long for the 280 length limit, skipping...' % tweet_text)
         else:
