@@ -578,6 +578,7 @@ def parse_country_contents(country, contents, ignore_urls=None, temp_url=None):
 
 def handle_change(country, recent_row):
     outmsg = generate_change_text(country, recent_row)
+    logger.debug('handle_change: country=%r, recent_row=%r, outmsg=%r' % (country, recent_row, outmsg))
     if outmsg:
         # generate tweet
         _tweet_outmsg = outmsg.strip().rstrip('.') + '.'
@@ -736,6 +737,7 @@ if __name__ == '__main__':
 
     sitemap.generate_sitemap()
 
+    logger.debug('TWEET_MSGS: %r' % TWEET_MSGS)
     if TWEET_MSGS:
         if not all([key in CONFIG for key in [
             'api-key', 'api-secret', 'access-token', 'access-secret']]):
