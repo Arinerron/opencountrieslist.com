@@ -273,7 +273,8 @@ function createMap(data) {
     var changes_agg = [[
         {type: 'date', label: 'Date'},
         {label: 'Percent Closed'},
-        {label: 'Percent Requiring Quarantine'}
+        {label: 'Percent Requiring Quarantine'},
+        {label: 'Percent Open'}
     ]]
     for (var [day, day_changes] of Object.entries(data['changes'])) {
         const dc = day_changes['classification']
@@ -287,7 +288,8 @@ function createMap(data) {
         changes_agg.push([
             new Date(day + ' UTC'),
             closed_countries / (open_countries + closed_countries), // skip unknowns
-            c_qr_no / (c_qr_no + c_qr_yes)
+            c_qr_no / (c_qr_no + c_qr_yes),
+            1
         ])
     }
 
@@ -301,11 +303,15 @@ function createMap(data) {
                 },
                 1: {
                     color: 'orange'
+                },
+                2: {
+                    color: 'green'
                 }
             },
             hAxis: {
                 title: 'Date',
-                format: 'M/d/yy',
+                format: 'M/d',
+                //format: 'M/d/yy',
                 gridlines: {count: 15},
             },
             vAxis: {
