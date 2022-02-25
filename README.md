@@ -1,6 +1,10 @@
 # What is this?
 
-I broke my leg skiing in Feb 2020 and was stuck in bed for a couple months. I came up with the idea of making a website that shows a list of open countries several weeks before any other solution existed and wrote this tool.
+I broke my leg skiing in Feb 2021 and was stuck in bed for a couple months. I came up with the idea of making a website that shows a list of open countries several weeks before any other solution existed and wrote this tool.
+
+https://web.archive.org/web/20210713191845/https://opencountrieslist.com/
+
+# How did it work?
 
 It parsed the English from US Embassy websites:
 
